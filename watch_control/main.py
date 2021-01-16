@@ -41,15 +41,20 @@ time.sleep(5)
 
 
 def main():
+    lastjas = 0
     lastnow = None
     sekundovnik = False
     while True:
-        jas = 40000 - (sensor.read_resistance() + 1250)
+        jas = 20000 - sensor.read_resistance()
         jas = jas / 200
         if jas < 1:
             jas = 1
         if jas > 255:
             jas = 255
+        jas = (jas + lastjas)/2
+        strip.setBrightness(int(jas))
+        strip.show()
+        lastjas = jas
         now = datetime.now()
         if (now.microsecond / 1000) > 500:
             if sekundovnik is not False:
@@ -64,7 +69,6 @@ def main():
 
         if lastnow != now.second:
             print(jas)
-            strip.setBrightness(int(jas))
             hodina = str(int_to_str(now.hour))
             num_to_segments(int(hodina[0]), 6, color, strip)
             num_to_segments(int(hodina[1]), 5, color, strip)
@@ -78,6 +82,7 @@ def main():
             num_to_segments(int(sekunda[1]), 1, color, strip)
             strip.show()
             lastnow = now.second
+        time.sleep(0.02)
 
 
 def int_to_str(i):
