@@ -26,6 +26,8 @@ sensor.a_pin = 24
 #    strip.setPixelColor(x, Color(255, 0, 0))
 color = rainbow3
 
+strip.setBrightness(100)
+
 light_seconds_indicator(True, color, strip)
 num_to_segments(8, 1, color, strip)
 num_to_segments(8, 2, color, strip)
