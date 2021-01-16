@@ -19,7 +19,9 @@ strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, 
 strip.begin()
 
 sensor = PiAnalog()
-
+sensor.C = 0.1
+sensor.R1 = 330
+sensor.a_pin = 24
 # for x in range(0, LED_COUNT):
 #    strip.setPixelColor(x, Color(255, 0, 0))
 color = rainbow3
