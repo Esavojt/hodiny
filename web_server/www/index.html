@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <title>Hodiny</title>
+    </head>
+    <body>
+        <a id="test">Test</a>
+        <script>
+            myFunction = function(){
+                webSocket = new WebSocket("ws://localhost:8765")
+                webSocket.onopen = () => {webSocket.send("user")}
+                webSocket.onmessage = (msg) => {
+                    document.getElementById("test").innerHTML = msg.data; 
+                    console.log(msg);
+                    webSocket.close();
+                }
+            }
+        </script>
+        <button onclick="myFunction()">Click me</button>
+    </body>
+</html>

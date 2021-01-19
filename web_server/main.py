@@ -19,7 +19,7 @@ class WebServer(multiprocessing.Process):
     def run(self):
         tprint("Starting!")
         # Make sure the server is created at current directory
-        os.chdir('./web_server')
+        os.chdir('./web_server/www')
 
         # Create server object listening the port 80
         self.server_object = HTTPServer(server_address=('', 80), RequestHandlerClass=CGIHTTPRequestHandler)
