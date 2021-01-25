@@ -1,0 +1,42 @@
+body {
+    margin: 0px;
+}
+
+header {
+    display: flex;
+    padding-top: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid;
+}
+
+h1 {
+    margin: 5px;
+}
+
+header button {
+    padding: 0;
+    margin: 6px;
+    margin-right: 5px;
+    border: none;
+    background: none;
+    width: 32px;
+    height: 32px;
+}
+#settings {
+    margin-left: auto;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+div .content_div {
+    padding: 20px;
+    border-radius: 5px;
+    border: solid 1px #ededed;
+    background: #ededed
+}

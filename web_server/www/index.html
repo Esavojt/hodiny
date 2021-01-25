@@ -7,21 +7,27 @@
     <body>
         <header>
             <h1>Hodiny</h1>
-            <button id="restart"><img src="restart.png"></button>
-            <button id="shutdown"><img src="shutdown.png"></button>
+            <button id="settings" title="Settings"><img src="settings.png"></button>
+            <button id="restart" title="Restart"><img src="restart.png"></button>
+            <button id="shutdown" title="Shutdown"><img src="shutdown.png"></button>
         </header>
-        <a id="test">Test</a>
-        <script>
-            myFunction = function(){
-                webSocket = new WebSocket("ws://localhost:8765")
-                webSocket.onopen = () => {webSocket.send("user")}
-                webSocket.onmessage = (msg) => {
-                    document.getElementById("test").innerHTML = msg.data; 
-                    console.log(msg);
-                    webSocket.close();
-                }
-            }
-        </script>
-        <button onclick="myFunction()">Click me</button>
+        <div id="content">
+            <div class="content_div">
+                <a id="test">Test</a>
+                <script>
+                    myFunction = function(){
+                        webSocket = new WebSocket("ws://localhost:8765")
+                        webSocket.onopen = () => {webSocket.send("user")}
+                        webSocket.onmessage = (msg) => {
+                            document.getElementById("test").innerHTML = msg.data; 
+                            console.log(msg);
+                            webSocket.close();
+                        }
+                    }
+                </script>
+                <button onclick="myFunction()">Click me</button>
+            </div>
+            <div>Test</div>
+        </div>
     </body>
 </html>
