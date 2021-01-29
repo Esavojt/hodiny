@@ -36,11 +36,27 @@
                     <div style="display: flex; flex-flow: row wrap; align-items: center;">
                         <p>Automatick&yacute jas:</p>
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="AutoSwitch" onclick="onAutoSet()">
                             <span class="slider round"></span>
                         </label>    
                     </div>
                     <input type="range" min="1" max="100" value="50" id="jas">
+                    <script>
+                        function onAutoSet(){
+                            slider = document.getElementById("jas");
+                            AutoSwitch = document.getElementById("AutoSwitch");
+                            if(AutoSwitch.checked){
+                                slider.setAttribute("disabled",true)
+                                slider.style.opacity = 0.5;
+                            }else{
+                                slider.removeAttribute("disabled")
+                                slider.style.opacity = 1;
+                            }
+                            
+                        }
+                        
+
+                    </script>
                 </div>
             </div>
             <div>Test</div>
