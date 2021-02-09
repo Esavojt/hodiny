@@ -34,6 +34,7 @@ class WebSocketServer(threading.Thread):
                 return int(time.time())
 
             def stn(args):
+                """I AM TOO LAZY"""
                 pass
 
             switcher={
