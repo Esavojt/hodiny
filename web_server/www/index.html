@@ -18,7 +18,7 @@
                 <script>
                     myFunction = function(){
                         webSocket = new WebSocket("ws://localhost:8765")
-                        webSocket.onopen = () => {webSocket.send("user")}
+                        webSocket.onopen = () => {webSocket.send("gtn")}
                         webSocket.onmessage = (msg) => {
                             document.getElementById("test").innerHTML = msg.data; 
                             console.log(msg);
@@ -33,17 +33,16 @@
             </div>
             <div class="separator">
                 <div class="content_div_sep">
-                    <h2>Nastaven&iacute jasu</h2>
                     <div class="content_under_header">
                         <div style="display: flex; flex-flow: row wrap; align-items: center;">
-                            <p>Automatick&yacute jas:</p>
+                            <p>Automatický jas:</p>
                             <label class="switch">
                                 <input type="checkbox" id="AutoSwitch" onclick="onAutoSet()">
                                 <span class="slider round"></span>
                             </label>    
                         </div>
                         <div style="display:flex">
-                            <input type="range" min="1" max="100" value="0" id="jas"  oninput="changeVal(this.value)">
+                            <input type="range" min="0" max="100" value="0" id="jas"  oninput="changeVal(this.value)">
                             <div style="text-align: center;width: 60px;"><p id="JasValue">100%</p></div>
                             
                         </div>
@@ -70,6 +69,7 @@
     
                         </script>
                     </div>
+                    <h2>Nastavení jasu</h2>
                 </div>
                 <div class="content_div_sep">
                     <h2>Nastavení času</h2>
