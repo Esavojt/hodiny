@@ -104,6 +104,6 @@ class WatchControl(threading.Thread):
 
     def run(self):
         print("[WatchControl] Starting!")
-        threading.Thread(target=backlight_update).run()
+        threading.Thread(target=backlight_update).start()
         main()
 
