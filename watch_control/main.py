@@ -90,7 +90,7 @@ async def backlight_update():
         await asyncio.sleep(0.02)
         
 loop.create_task(backlight_update())
-loop.create_task(main())
+#loop.create_task(main())
 
 def int_to_str(i):
     if i < 10:
@@ -110,4 +110,4 @@ class WatchControl(threading.Thread):
         print("[WatchControl] Starting!")
         main()
 
-loop.run_forever()
+loop.run_until_complete(main())
