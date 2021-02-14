@@ -5,8 +5,7 @@ from segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
 from colors import rainbow3
 import asyncio
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
+loop = asyncio.get_event_loop()
 
 # LED strip configuration:
 LED_COUNT = 300  # Number of LED pixels.
@@ -91,9 +90,8 @@ async def backlight_update():
         lastjas = jas
         await asyncio.sleep(0.02)
         
-asyncio.create_task(backlight_update())
-asyncio.create_task(main())
-loop.run_forever()
+loop.create_task(backlight_update())
+loop.create_task(main())
 
 def int_to_str(i):
     if i < 10:
@@ -112,3 +110,5 @@ class WatchControl(threading.Thread):
     def run(self):
         print("[WatchControl] Starting!")
         main()
+
+loop.run_forever()
