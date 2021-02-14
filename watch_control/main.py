@@ -4,6 +4,7 @@ from rpi_ws281x import Adafruit_NeoPixel
 from segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
 from colors import rainbow3
+import asyncio
 
 # LED strip configuration:
 LED_COUNT = 300  # Number of LED pixels.
@@ -41,20 +42,9 @@ time.sleep(5)
 
 
 def main():
-    lastjas = 0
     lastnow = None
     sekundovnik = False
     while True:
-        jas = 20000 - sensor.read_resistance()
-        jas = jas / 200
-        if jas < 1:
-            jas = 1
-        if jas > 255:
-            jas = 255
-        jas = (jas + lastjas)/2
-        strip.setBrightness(int(jas))
-        strip.show()
-        lastjas = jas
         now = datetime.now()
         if (now.microsecond / 1000) > 500:
             if sekundovnik is not False:
@@ -82,8 +72,24 @@ def main():
             num_to_segments(int(sekunda[1]), 1, color, strip)
             strip.show()
             lastnow = now.second
-        time.sleep(0.02)
+        
 
+async def backlight_update():
+    lastjas = 0
+    while True:
+        jas = 20000 - sensor.read_resistance()
+        jas = jas / 200
+        if jas < 1:
+            jas = 1
+        if jas > 255:
+            jas = 255
+        jas = (jas + lastjas)/2
+        strip.setBrightness(int(jas))
+        strip.show()
+        lastjas = jas
+        await asyncio.sleep(0.02)
+        
+asyncio.create_task(backlight_update())
 
 def int_to_str(i):
     if i < 10:
