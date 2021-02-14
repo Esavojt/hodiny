@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="cs">
     <head>
+        <meta charset="UTF-8">
         <title>Hodiny</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <header>
             <h1>Hodiny</h1>
-            <button id="settings" title="Settings"><img src="settings.png"></button>
-            <button id="restart" title="Restart"><img src="restart.png"></button>
-            <button id="shutdown" title="Shutdown"><img src="shutdown.png"></button>
+            <button id="settings" title="Settings"><img src="settings.png" alt=""></button>
+            <button id="restart" title="Restart"><img src="restart.png" alt=""></button>
+            <button id="shutdown" title="Shutdown"><img src="shutdown.png" alt=""></button>
         </header>
         <div id="content">
             <div class="content_div">
@@ -17,7 +18,7 @@
                 <script>
                     myFunction = function(){
                         webSocket = new WebSocket("ws://localhost:8765")
-                        webSocket.onopen = () => {webSocket.send("user")}
+                        webSocket.onopen = () => {webSocket.send("gtn")}
                         webSocket.onmessage = (msg) => {
                             document.getElementById("test").innerHTML = msg.data; 
                             console.log(msg);
@@ -28,22 +29,53 @@
                 <button onclick="myFunction()">Click me</button>
             </div>
             <div class="content_div">
-                <h2>Nastaven&iacute barev</h2>
+                <h2>Nastavení barev</h2>
             </div>
-            <div class="content_div">
-                <h2>Nastaven&iacute jasu</h2>
-                <div class="content_under_header">
-                    <div style="display: flex; flex-flow: row wrap; align-items: center;">
-                        <p>Automatick&yacute jas:</p>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>    
+            <div class="separator">
+                <div class="content_div_sep">
+                    <div class="content_under_header">
+                        <div style="display: flex; flex-flow: row wrap; align-items: center;">
+                            <p>Automatický jas:</p>
+                            <label class="switch">
+                                <input type="checkbox" id="AutoSwitch" onclick="onAutoSet()">
+                                <span class="slider round"></span>
+                            </label>    
+                        </div>
+                        <div style="display:flex">
+                            <input type="range" min="0" max="100" value="0" id="jas"  oninput="changeVal(this.value)">
+                            <div style="text-align: center;width: 60px;"><p id="JasValue">100%</p></div>
+                            
+                        </div>
+                        <script>
+                            function onAutoSet(){
+                                slider = document.getElementById("jas");
+                                text = document.getElementById("JasValue");
+                                AutoSwitch = document.getElementById("AutoSwitch");
+                                if(AutoSwitch.checked){
+                                    slider.setAttribute("disabled",true)
+                                    slider.style.opacity = 0.5;
+                                    text.style.opacity = 0.5;
+                                }else{
+                                    slider.removeAttribute("disabled")
+                                    slider.style.opacity = 1;
+                                    text.style.opacity = 1;
+                                }
+                            }
+                            function changeVal(value){
+                                text = document.getElementById("JasValue");
+                                text.innerHTML = value + "%"
+                            }
+                            
+    
+                        </script>
                     </div>
-                    <input type="range" min="1" max="100" value="50" id="jas">
+                    <h2>Nastavení jasu</h2>
+                </div>
+                <div class="content_div_sep">
+                    <p>Váš čas je opožděný o 0s</p>
+                    <h2>Nastavení času</h2>
                 </div>
             </div>
-            <div>Test</div>
         </div>
     </body>
 </html>

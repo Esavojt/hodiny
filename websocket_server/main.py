@@ -3,6 +3,7 @@ import websockets
 import threading
 import builtins
 from datetime import datetime
+import time
 
 def tprint(*objs, **kwargs):
     my_prefix = "[WebSocketServer]"
@@ -22,17 +23,28 @@ class WebSocketServer(threading.Thread):
         asyncio.set_event_loop(self.eventLoop)
 
         async def handle(websocket, path):
-            name = await websocket.recv()
-            tprint(f"< {name}")
+            args = await websocket.recv()
+            """
+            == Věci ohledně komunikace: ==
+            - client se ptá, server odpovídá
+            - 'gtn' (get time now) získá UNIX čas na hodinách
+            - 'stn' (set time now) nastaví čas z UNIX času
+            """
+            def gtn(args):
+                return int(time.time())
 
-            now = datetime.now()
-            current_time = now.strftime("%H:%M:%S")
+            def stn(args):
+                """I AM TOO LAZY"""
+                pass
 
-            greeting = f"Hello {name}! {current_time}"
-
-            await websocket.send(greeting)
-            tprint(f"> {greeting}")
-
+            switcher={
+                    "gtn":gtn,
+                    "stn":stn
+                    }
+            tprint(args)
+            func = switcher.get(args[0:3], lambda :'Invalid')
+            await websocket.send(str(func(args)))
+            
         start_server = websockets.serve(handle, "0.0.0.0", 8765)
 
         asyncio.get_event_loop().run_until_complete(start_server)

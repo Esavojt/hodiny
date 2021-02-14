@@ -3,7 +3,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(255, 255, 255);
 }
-
 header {
     display: flex;
     padding-top: 0px;
@@ -19,10 +18,10 @@ h1 {
 }
 h2 {
     margin: 0px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     text-align: center;
-    font-size: 1.5em;
-    color: rgb(78, 78, 78)
+    font-size: 1.3em;
+    color: rgb(109, 109, 109);
 }
 header button {
     padding: 0;
@@ -40,8 +39,8 @@ header button {
 #content {
     display: flex;
     flex-direction: column;
-    margin-left: 7%;
-    margin-right: 7%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 div .content_div {
     padding-top: 5px;
@@ -59,6 +58,7 @@ div .content_div {
     width: 30px;
     height: 16px;
     margin-left: 5px;
+    
   }
   
   /* Hide default HTML checkbox */
@@ -130,7 +130,7 @@ p {
 
 input[type=range] {
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 100%; /* Specific width is required for Firefox. */
+    width: 90%; /* Specific width is required for Firefox. */
     background: transparent; /* Otherwise white in Chrome */
   }
   
@@ -142,47 +142,79 @@ input[type=range] {
     outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
   }
   
-  input[type=range]::-ms-track {
-    width: 100%;
-    cursor: pointer;
-  
-    /* Hides the slider so custom styles can be added */
-    background: transparent; 
-    border-color: transparent;
-    color: transparent;
-  }
 
   /* Special styling for WebKit/Blink */
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
+    border: 0.1px solid #9e9e9e;
+    height: 22px;
+    width: 22px;
+    border-radius: 20px;
     background: #ffffff;
     cursor: pointer;
-    margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+    margin-top: -3px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
   }
   
   /* All the same stuff for Firefox */
   input[type=range]::-moz-range-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
+    border: 0.1px solid #9e9e9e;
+    height: 22px;
+    width: 22px;
+    border-radius: 20px;
     background: #ffffff;
     cursor: pointer;
   }
   
-  /* All the same stuff for IE */
-  input[type=range]::-ms-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
+
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 16px;
     cursor: pointer;
+    background:  #3FDFFF;
+    border-radius: 16px;
+    border: 0px;
+    -webkit-transition: .4s;
+    transition: .4s;
   }
+  input[type=range]:disabled::-webkit-slider-runnable-track{
+    background:  #8a8a8a;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #40defd;
+  }
+  
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    background: #3FDFFF;
+    border-radius: 16px;
+    border: 0px;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  input[type=range]:disabled::-moz-range-track {
+    background:  #8a8a8a;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+
+.separator {
+  display: flex;
+  flex-direction: row;
+}
+
+.content_div_sep{
+  display:inline-block;
+  width:50%;
+  padding-top: 5px;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: solid 1px #ededed;
+  background: #ededed;
+  margin: 3px;
+}
