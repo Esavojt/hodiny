@@ -59,7 +59,6 @@ async def main():
                 strip.show()
 
         if lastnow != now.second:
-            print(jas)
             hodina = str(int_to_str(now.hour))
             num_to_segments(int(hodina[0]), 6, color, strip)
             num_to_segments(int(hodina[1]), 5, color, strip)
