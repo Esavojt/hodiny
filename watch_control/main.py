@@ -87,7 +87,7 @@ def backlight_update():
         strip.setBrightness(int(jas))
         strip.show()
         lastjas = jas
-        await asyncio.sleep(0.02)
+        time.sleep(0.02)
         
 
 def int_to_str(i):
