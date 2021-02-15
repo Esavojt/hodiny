@@ -16,6 +16,7 @@ class WebSocketServer(threading.Thread):
         self.queueWC2WS = queueWC2WS
         self.queueWS2WC = queueWS2WC
         self.eventLoop = eventLoop
+        self.daemon = True
         super().__init__()
 
     def run(self):

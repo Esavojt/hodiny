@@ -102,6 +102,7 @@ def int_to_str(i):
 class WatchControl(threading.Thread):
     def __init__(self):
         super().__init__()
+        self.daemon = True
 
     def run(self):
         print("[WatchControl] Starting!")
