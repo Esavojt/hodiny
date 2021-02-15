@@ -72,6 +72,7 @@ def main():
             num_to_segments(int(sekunda[1]), 1, color, strip)
             strip.show()
             lastnow = now.second
+        time.sleep(0.02)
         
 
 def backlight_update():
