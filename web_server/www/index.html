@@ -42,7 +42,7 @@
                             </label>    
                         </div>
                         <div style="display:flex">
-                            <input type="range" min="0" max="100" value="0" id="jas"  oninput="changeVal(this.value)">
+                            <input type="range" min="0" max="100" value="0" id="jas"  oninput="changeVal(this.value)" onchange="">
                             <div style="text-align: center;width: 60px;"><p id="JasValue">100%</p></div>
                             
                         </div>
@@ -55,15 +55,26 @@
                                     slider.setAttribute("disabled",true)
                                     slider.style.opacity = 0.5;
                                     text.style.opacity = 0.5;
+                                    webSocket = new WebSocket("ws://" + document.location.host+":8765")
+                                    webSocket.onopen = () => {webSocket.send("scb auto")}
+                                    webSocket.onmessage = (msg) => {webSocket.close()}
                                 }else{
                                     slider.removeAttribute("disabled")
                                     slider.style.opacity = 1;
                                     text.style.opacity = 1;
+                                    webSocket = new WebSocket("ws://" + document.location.host+":8765")
+                                    webSocket.onopen = () => {webSocket.send("scb " + slider.value)}
+                                    webSocket.onmessage = (msg) => {webSocket.close()}
                                 }
                             }
                             function changeVal(value){
                                 text = document.getElementById("JasValue");
                                 text.innerHTML = value + "%"
+                            }
+                            function showBrightness(value){
+                                webSocket = new WebSocket("ws://" + document.location.host+":8765")
+                                webSocket.onopen = () => {webSocket.send("scb " + slider.value)}
+                                webSocket.onmessage = (msg) => {webSocket.close()}
                             }
                             
     

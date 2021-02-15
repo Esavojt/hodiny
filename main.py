@@ -10,7 +10,7 @@ web_server = WebServer()
 queueWC2WS = []
 queueWS2WC = []
 
-watch_control = WatchControl()
+watch_control = WatchControl(queueWC2WS, queueWS2WC)
 websocket_server = WebSocketServer(queueWC2WS, queueWS2WC, asyncio.get_event_loop())
 
 if __name__ == '__main__':

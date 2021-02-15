@@ -33,6 +33,8 @@ class WebSocketServer(threading.Thread):
             - 'stn' (set time now) nastaví čas z UNIX času
             - 'sta' (set time automatically) nastaví čas hodin z NTP
             - 'sns' (switch ntp state) změní zda čas je sync z NTP nebo ne
+
+            - 'scb' (set clock brightness) změní jas hodin
             """
             def gtn(args):
                 output = int(time.time())
@@ -58,11 +60,15 @@ class WebSocketServer(threading.Thread):
                 args = args.split()
                 os.system(f"timedatectl set-ntp {args[1]}")
 
+            def scb(args):
+                self.queueWS2WC.append(args)
+
             switcher={
                     "gtn":gtn,
                     "stn":stn,
                     "sta":sta,
                     "sns":sns,
+                    "scb":scb,
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')

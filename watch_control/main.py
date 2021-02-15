@@ -31,65 +31,89 @@ color = rainbow3
 strip.setBrightness(100)
 strip.show()
 
+brightness = 100
 
-def main():
-    light_seconds_indicator(True, color, strip)
-    num_to_segments(8, 1, color, strip)
-    num_to_segments(8, 2, color, strip)
-    num_to_segments(8, 3, color, strip)
-    num_to_segments(8, 4, color, strip)
-    num_to_segments(8, 5, color, strip)
-    num_to_segments(8, 6, color, strip)
-    strip.show()
-    time.sleep(5)
+class WatchControl(threading.Thread):
+    def __init__(self, queueWC2WS, queueWS2WC):
+        self.queueWS2WC = queueWS2WC
+        self.queueWC2WS = queueWC2WS
+        super().__init__()
+        self.daemon = True
 
-    lastnow = None
-    sekundovnik = False
-    while True:
-        now = datetime.now()
-        if (now.microsecond / 1000) > 500:
-            if sekundovnik is not False:
-                sekundovnik = False
-                light_seconds_indicator(sekundovnik, color, strip)
+    def run(self):
+        print("[WatchControl] Starting!")
+        threading.Thread(target=backlight_update).start()
+        self.main()
+
+    def main(self):
+        light_seconds_indicator(True, color, strip)
+        num_to_segments(8, 1, color, strip)
+        num_to_segments(8, 2, color, strip)
+        num_to_segments(8, 3, color, strip)
+        num_to_segments(8, 4, color, strip)
+        num_to_segments(8, 5, color, strip)
+        num_to_segments(8, 6, color, strip)
+        strip.show()
+        time.sleep(5)
+
+        lastnow = None
+        sekundovnik = False
+        while True:
+            now = datetime.now()
+            if (now.microsecond / 1000) > 500:
+                if sekundovnik is not False:
+                    sekundovnik = False
+                    light_seconds_indicator(sekundovnik, color, strip)
+                    strip.show()
+            else:
+                if sekundovnik is not True:
+                    sekundovnik = True
+                    light_seconds_indicator(sekundovnik, color, strip)
+                    strip.show()
+
+            if lastnow != now.second:
+                hodina = str(int_to_str(now.hour))
+                num_to_segments(int(hodina[0]), 6, color, strip)
+                num_to_segments(int(hodina[1]), 5, color, strip)
+
+                minuta = str(int_to_str(now.minute))
+                num_to_segments(int(minuta[0]), 4, color, strip)
+                num_to_segments(int(minuta[1]), 3, color, strip)
+
+                sekunda = str(int_to_str(now.second))
+                num_to_segments(int(sekunda[0]), 2, color, strip)
+                num_to_segments(int(sekunda[1]), 1, color, strip)
                 strip.show()
-        else:
-            if sekundovnik is not True:
-                sekundovnik = True
-                light_seconds_indicator(sekundovnik, color, strip)
-                strip.show()
-
-        if lastnow != now.second:
-            hodina = str(int_to_str(now.hour))
-            num_to_segments(int(hodina[0]), 6, color, strip)
-            num_to_segments(int(hodina[1]), 5, color, strip)
-
-            minuta = str(int_to_str(now.minute))
-            num_to_segments(int(minuta[0]), 4, color, strip)
-            num_to_segments(int(minuta[1]), 3, color, strip)
-
-            sekunda = str(int_to_str(now.second))
-            num_to_segments(int(sekunda[0]), 2, color, strip)
-            num_to_segments(int(sekunda[1]), 1, color, strip)
-            strip.show()
-            lastnow = now.second
-        time.sleep(0.02)
+                lastnow = now.second
+            
+            if len(self.queueWS2WC) != 0:
+                msg = self.queueWS2WC[1][0:3]
+                data = self.queueWS2WC[1][3:]
+                if msg == "scb":
+                    print(data)
+                    self.queueWS2WC.pop(0)
+            time.sleep(0.02)
         
 
 def backlight_update():
     lastjas = 0
     while True:
-        jas = 20000 - sensor.read_resistance()
-        jas = jas / 200
-        if jas < 1:
-            jas = 1
-        if jas > 255:
-            jas = 255
-        jas = (jas + lastjas)/2
-        strip.setBrightness(int(jas))
-        strip.show()
-        lastjas = jas
-        time.sleep(0.05)
-        
+        if brightness == "auto":
+            jas = 20000 - sensor.read_resistance()
+            jas = jas / 200
+            if jas < 1:
+                jas = 1
+            if jas > 255:
+                jas = 255
+            jas = (jas + lastjas)/2
+            strip.setBrightness(int(jas))
+            strip.show()
+            lastjas = jas
+            time.sleep(0.05)
+        else:
+            strip.setBrightness(brightness)
+            strip.show()
+            time.sleep(0.1)
 
 def int_to_str(i):
     if i < 10:
@@ -98,14 +122,4 @@ def int_to_str(i):
         return str(i)
 
 
-
-class WatchControl(threading.Thread):
-    def __init__(self):
-        super().__init__()
-        self.daemon = True
-
-    def run(self):
-        print("[WatchControl] Starting!")
-        threading.Thread(target=backlight_update).start()
-        main()
 
