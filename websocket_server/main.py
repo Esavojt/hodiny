@@ -74,7 +74,7 @@ class WebSocketServer(threading.Thread):
                 while True:
                     if len(self.queueWC2WS) == 1:
                         response = self.queueWC2WS[0]
-                        if response[0:3] == 'gcb':
+                        if response[0:3] == "gcb":
                             data = response.split()
                             self.queueWC2WS.pop(0)
                             tprint(">",data[1])

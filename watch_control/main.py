@@ -98,7 +98,7 @@ class WatchControl(threading.Thread):
                 
                 if msg == 'gcb':
                     self.queueWS2WC.pop(0)
-                    self.queueWC2WS.append(brightness)
+                    self.queueWC2WS.append(f"gcb {brightness}")
             time.sleep(0.02)
         
 
