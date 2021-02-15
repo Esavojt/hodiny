@@ -14,7 +14,6 @@ class WebServer(multiprocessing.Process):
 
     def __init__(self):
         self.server_object = None
-        self.daemon = True
         super().__init__()
 
     def run(self):

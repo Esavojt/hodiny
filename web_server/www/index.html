@@ -76,6 +76,25 @@
                     <h2>Nastavení času</h2>
                 </div>
             </div>
+            <div class="content_div">
+                <h2>Developer console</h2>
+                <p id="output">Output</p>
+                <button id="submit_button" onclick="onSubmit()">Odeslat</button>
+                <input type="text" id="submit_text">
+                <script>
+                    var onSubmit = function(){
+                        var textbox = document.getElementById("submit_text")
+                        var output = document.getElementById("output")
+                        webSocket = new WebSocket("ws://localhost:8765")
+                        webSocket.onopen = () => {webSocket.send(textbox.value)}
+                        webSocket.onmessage = (msg) => {
+                            output.innerHTML = msg.data
+                            console.log(msg);
+                            webSocket.close();
+                        }
+                    }
+                </script>
+            </div>
         </div>
     </body>
 </html>
