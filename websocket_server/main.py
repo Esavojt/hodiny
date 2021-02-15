@@ -41,7 +41,9 @@ class WebSocketServer(threading.Thread):
 
             def stn(args):
                 args = args.split()
-                os.system(f"timedatectl set-time {args[1]}")
+                ts = int(args[1])
+                time = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+                os.system(f"timedatectl set-time {time}")
                 output = "ok"
                 tprint(">",output)
                 return output
