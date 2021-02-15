@@ -88,9 +88,10 @@ class WatchControl(threading.Thread):
             
             if len(self.queueWS2WC) != 0:
                 msg = self.queueWS2WC[0][0:3]
-                data = self.queueWS2WC[0][3:]
+                data = self.queueWS2WC[0][4:]
+                
                 if msg == "scb":
-                    print(data)
+                    brightness = data
                     self.queueWS2WC.pop(0)
             time.sleep(0.02)
         
@@ -111,7 +112,7 @@ def backlight_update():
             lastjas = jas
             time.sleep(0.05)
         else:
-            strip.setBrightness(brightness)
+            strip.setBrightness(int(brightness))
             strip.show()
             time.sleep(0.1)
 
