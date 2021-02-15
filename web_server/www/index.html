@@ -20,6 +20,7 @@
                         document.getElementById("AutoSwitch").checked = false
                         onAutoSet(false)
                         document.getElementById("jas").value = msg
+                        document.getElementById("JasValue").innerHTML = Math.round(msg/1.5)
                     }
                     webSocket.close()
                 }else{
