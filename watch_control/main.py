@@ -87,8 +87,8 @@ class WatchControl(threading.Thread):
                 lastnow = now.second
             
             if len(self.queueWS2WC) != 0:
-                msg = self.queueWS2WC[1][0:3]
-                data = self.queueWS2WC[1][3:]
+                msg = self.queueWS2WC[0][0:3]
+                data = self.queueWS2WC[0][3:]
                 if msg == "scb":
                     print(data)
                     self.queueWS2WC.pop(0)
