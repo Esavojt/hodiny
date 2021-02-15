@@ -6,8 +6,7 @@ from PiAnalog import PiAnalog
 from watch_control.colors import rainbow3
 import threading
 
-import ptvsd
-debugger_helper.attach_vscode(lambda host, port: ptvsd.enable_attach(address=(host, port), redirect_output=True))
+
 
 # LED strip configuration:
 LED_COUNT = 300  # Number of LED pixels.
