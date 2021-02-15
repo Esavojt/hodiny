@@ -4,6 +4,30 @@
         <meta charset="UTF-8">
         <title>Hodiny</title>
         <link rel="stylesheet" href="style.css">
+        <script defer>
+            let requestno = 1
+            webSocket = new WebSocket("ws://" + document.location.host+":8765")
+            webSocket.onopen = () => {
+                webSocket.send("gcb");
+            }
+            webSocket.onmessage = (msg) => {
+                if(requestno == 1){
+                    msg = msg.data
+                    if (msg == "auto"){
+                        document.getElementById("AutoSwitch").checked = true
+                        onAutoSet(true)
+                    }else{
+                        document.getElementById("AutoSwitch").checked = false
+                        onAutoSet(false)
+                        document.getElementById("jas").value = msg
+                    }
+                    webSocket.close()
+                }else{
+                    webSocket.close()
+                }
+                requestno += 1
+            }
+        </script>
     </head>
     <body>
         <header>
@@ -37,7 +61,7 @@
                         <div style="display: flex; flex-flow: row wrap; align-items: center;">
                             <p>Automatický jas:</p>
                             <label class="switch">
-                                <input type="checkbox" id="AutoSwitch" onclick="onAutoSet()">
+                                <input type="checkbox" id="AutoSwitch" onclick="onAutoSet(this.checked)">
                                 <span class="slider round"></span>
                             </label>    
                         </div>
@@ -47,11 +71,10 @@
                             
                         </div>
                         <script>
-                            function onAutoSet(){
+                            function onAutoSet(value){
                                 slider = document.getElementById("jas");
                                 text = document.getElementById("JasValue");
-                                AutoSwitch = document.getElementById("AutoSwitch");
-                                if(AutoSwitch.checked){
+                                if(value){
                                     slider.setAttribute("disabled",true)
                                     slider.style.opacity = 0.5;
                                     text.style.opacity = 0.5;
