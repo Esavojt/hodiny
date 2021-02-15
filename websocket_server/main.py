@@ -32,6 +32,7 @@ class WebSocketServer(threading.Thread):
             - 'gtn' (get time now) získá UNIX čas na hodinách
             - 'stn' (set time now) nastaví čas z UNIX času
             - 'sta' (set time automatically) nastaví čas hodin z NTP
+            - 'sns' (switch ntp state) změní zda čas je sync z NTP nebo ne
             """
             def gtn(args):
                 output = int(time.time())
@@ -39,23 +40,27 @@ class WebSocketServer(threading.Thread):
                 return output
 
             def stn(args):
-                """I AM TOO LAZY"""
-
+                args = args.split()
+                os.system(f"timedatectl set-time {args[1]}")
                 output = "ok"
                 tprint(">",output)
                 return output
 
             def sta(args):
-                os.system("sntp -s time.google.com")
-
+                os.system(f"timedatectl set-ntp true")
                 output = "ok"
                 tprint(">",output)
                 return output
+            
+            def sns(args):
+                args = args.split()
+                os.system(f"timedatectl set-ntp {args[1]}")
 
             switcher={
                     "gtn":gtn,
                     "stn":stn,
                     "sta":sta,
+                    "sns":sns,
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')
