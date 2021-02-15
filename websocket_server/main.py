@@ -5,6 +5,7 @@ import builtins
 from datetime import datetime
 import time
 import os
+import json
 
 def tprint(*objs, **kwargs):
     my_prefix = "[WebSocketServer]"
@@ -35,6 +36,7 @@ class WebSocketServer(threading.Thread):
             - 'sns' (switch ntp state) změní zda čas je sync z NTP nebo ne
 
             - 'scb' (set clock brightness) změní jas hodin
+            - 'gcb' (get clock brightness) získá jas hodin
             """
             def gtn(args):
                 output = int(time.time())
@@ -59,9 +61,24 @@ class WebSocketServer(threading.Thread):
             def sns(args):
                 args = args.split()
                 os.system(f"timedatectl set-ntp {args[1]}")
+                tprint(">",'ok')
+                return 'ok'
 
             def scb(args):
                 self.queueWS2WC.append(args)
+                tprint(">",'ok')
+                return 'ok̈́'
+            
+            def gcb(args):
+                self.queueWS2WC.append('gcb')
+                while True:
+                    if len(self.queueWC2WS) == 1:
+                        response = self.queueWC2WS[0]
+                        if response[0:3] == 'gcb':
+                            data = response.split()
+                            self.queueWC2WS.pop(0)
+                            tprint(">",data[1])
+                            return data[1]
 
             switcher={
                     "gtn":gtn,
