@@ -42,7 +42,7 @@
                             </label>    
                         </div>
                         <div style="display:flex">
-                            <input type="range" min="0" max="100" value="0" id="jas" oninput="changeVal(this.value)" onchange="showBrightness(this.value)">
+                            <input type="range" min="0" max="150" value="0" id="jas" oninput="changeVal(this.value)" onchange="showBrightness(this.value)">
                             <div style="text-align: center;width: 60px;"><p id="JasValue">100%</p></div>
                             
                         </div>
@@ -69,7 +69,7 @@
                             }
                             function changeVal(value){
                                 text = document.getElementById("JasValue");
-                                text.innerHTML = value + "%"
+                                text.innerHTML = Math.round(value/1.5) + "%"
                             }
                             function showBrightness(value){
                                 webSocket = new WebSocket("ws://" + document.location.host+":8765")
