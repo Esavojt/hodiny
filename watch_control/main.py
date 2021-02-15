@@ -1,9 +1,9 @@
 from datetime import datetime
 import time
 from rpi_ws281x import Adafruit_NeoPixel
-from segments import num_to_segments, light_seconds_indicator
+from watch_control.segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
-from colors import rainbow3
+from watch_control.colors import rainbow3
 import threading
 
 
@@ -31,18 +31,18 @@ color = rainbow3
 strip.setBrightness(100)
 strip.show()
 
-light_seconds_indicator(True, color, strip)
-num_to_segments(8, 1, color, strip)
-num_to_segments(8, 2, color, strip)
-num_to_segments(8, 3, color, strip)
-num_to_segments(8, 4, color, strip)
-num_to_segments(8, 5, color, strip)
-num_to_segments(8, 6, color, strip)
-strip.show()
-time.sleep(5)
-
 
 def main():
+    light_seconds_indicator(True, color, strip)
+    num_to_segments(8, 1, color, strip)
+    num_to_segments(8, 2, color, strip)
+    num_to_segments(8, 3, color, strip)
+    num_to_segments(8, 4, color, strip)
+    num_to_segments(8, 5, color, strip)
+    num_to_segments(8, 6, color, strip)
+    strip.show()
+    time.sleep(5)
+
     lastnow = None
     sekundovnik = False
     while True:
