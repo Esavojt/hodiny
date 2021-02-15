@@ -17,7 +17,7 @@
                 <a id="test">Test</a>
                 <script>
                     myFunction = function(){
-                        webSocket = new WebSocket("ws://localhost:8765")
+                        webSocket = new WebSocket("ws://" + document.location.host+":8765")
                         webSocket.onopen = () => {webSocket.send("gtn")}
                         webSocket.onmessage = (msg) => {
                             document.getElementById("test").innerHTML = msg.data; 
@@ -85,7 +85,7 @@
                     var onSubmit = function(){
                         var textbox = document.getElementById("submit_text")
                         var output = document.getElementById("output")
-                        webSocket = new WebSocket("ws://localhost:8765")
+                        webSocket = new WebSocket("ws://" + document.location.host+":8765")
                         webSocket.onopen = () => {webSocket.send(textbox.value)}
                         webSocket.onmessage = (msg) => {
                             output.innerHTML = msg.data
