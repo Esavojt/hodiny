@@ -5,6 +5,7 @@ from watch_control.segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
 from watch_control.colors import rainbow3
 import threading
+import yaml
 
 
 
@@ -32,7 +33,12 @@ color = rainbow3
 strip.setBrightness(100)
 strip.show()
 
-brightness = 100
+brightness = "auto"
+
+f = open("config.yml")
+file = f.read()
+config = yaml.load(file)
+brightness = config['brightness']
 
 class WatchControl(threading.Thread):
     def __init__(self, queueWC2WS, queueWS2WC):
@@ -95,6 +101,9 @@ class WatchControl(threading.Thread):
                     global brightness
                     brightness = data
                     self.queueWS2WC.pop(0)
+                    with open("./config.yml", 'w') as f:
+                        config['brightness'] = brightness
+                        f.write(yaml.safe_dump(config))
                 
                 if msg == 'gcb':
                     self.queueWS2WC.pop(0)

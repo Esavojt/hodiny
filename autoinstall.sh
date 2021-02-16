@@ -9,6 +9,7 @@ apt update
 
 echo "---------- Installing python3 ----------"
 apt install python3 python3-pip python3-venv python3-distutils -y
+pip3 install pyyaml
 
 echo "---------- Installing needed libraries ----------"
 apt install git -y
