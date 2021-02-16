@@ -30,6 +30,9 @@ class WebSocketServer(threading.Thread):
             """
             == Věci ohledně komunikace: ==
             - client se ptá, server odpovídá
+            
+            - 'bye' odepíše bye
+
             - 'gtn' (get time now) získá UNIX čas na hodinách
             - 'stn' (set time now) nastaví čas z UNIX času
             - 'sta' (set time automatically) nastaví čas hodin z NTP
@@ -38,6 +41,10 @@ class WebSocketServer(threading.Thread):
             - 'scb' (set clock brightness) změní jas hodin
             - 'gcb' (get clock brightness) získá jas hodin
             """
+
+            def bye(args):
+                return "bye"
+
             def gtn(args):
                 output = int(time.time())
                 tprint(">",output)
@@ -81,6 +88,7 @@ class WebSocketServer(threading.Thread):
                             return data[1]
 
             switcher={
+                    "bye":bye,
                     "gtn":gtn,
                     "stn":stn,
                     "sta":sta,
