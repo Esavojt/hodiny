@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Hodiny</title>
         <link rel="stylesheet" href="style.css">
-        <script defer>
+        <script async>
             let requestno = 1
             loaderSocket = new WebSocket("ws://" + document.location.host+":8765")
             loaderSocket.onopen = () => {
