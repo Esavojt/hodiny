@@ -23,7 +23,8 @@
                         document.getElementById("jas").value = msg
                         document.getElementById("JasValue").innerHTML = Math.round(msg/1.5) + "%"
                     }
-                    loaderSocket.send("bye")
+                    document.getElementById("SyncModal").style.display = 'none'
+                    loaderSocket.close()
                 }else{
                     loaderSocket.close()
                     document.getElementById("SyncModal").style.display = 'none'
