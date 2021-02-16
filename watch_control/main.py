@@ -35,9 +35,9 @@ strip.show()
 
 brightness = "auto"
 
-f = open("watch_control/config.yml")
+f = open("config.yml")
 file = f.read()
-config = yaml.load(file)
+config = yaml.safe_load(file)
 brightness = config['brightness']
 
 class WatchControl(threading.Thread):
