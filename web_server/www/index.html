@@ -23,11 +23,12 @@
                         document.getElementById("jas").value = msg
                         document.getElementById("JasValue").innerHTML = Math.round(msg/1.5) + "%"
                     }
-                    document.getElementById("SyncModal").style.display = 'none'
+                    setTimeout(()=>{
+                        document.getElementById("SyncModal").style.display = 'none'
+                    },2000)
                     loaderSocket.close()
                 }else{
                     loaderSocket.close()
-                    document.getElementById("SyncModal").style.display = 'none'
 
                 }
                 requestno += 1
