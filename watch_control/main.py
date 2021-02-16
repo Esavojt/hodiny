@@ -35,7 +35,7 @@ strip.show()
 
 brightness = "auto"
 
-f = open("config.yml")
+f = open("watch_control/config.yml")
 file = f.read()
 config = yaml.load(file)
 brightness = config['brightness']
