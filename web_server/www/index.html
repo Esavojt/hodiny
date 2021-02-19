@@ -5,14 +5,12 @@
         <title>Hodiny</title>
         <link rel="stylesheet" href="style.css">
         <script async>
-            let requestno = 1
             loaderSocket = new WebSocket("ws://" + document.location.host+":8765")
             loaderSocket.onopen = () => {
                 loaderSocket.send("gcb");
             }
             loaderSocket.onmessage = (msg) => {
-                if(requestno == 1){
-                    msg = msg.data
+                msg = msg.data
                     if (msg == "auto"){
                         document.getElementById("AutoSwitch").checked = true
                         document.getElementById("jas").value = 150
@@ -27,11 +25,17 @@
                         document.getElementById("SyncModal").style.display = 'none'
                     },2000)
                     loaderSocket.close()
-                }else{
-                    loaderSocket.close()
+            }
 
-                }
-                requestno += 1
+            loaderSocket = new WebSocket("ws://" + document.location.host+":8765")
+            loaderSocket.onopen = () => {
+                loaderSocket.send("gcc");
+            }
+            loaderSocket.onmessage = (msg) => {
+                msg = msg.data
+                json = JSON.parse(msg)
+                console.log(json)
+                loaderSocket.close()
             }
         </script>
     </head>
