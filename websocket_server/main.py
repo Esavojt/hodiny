@@ -40,6 +40,9 @@ class WebSocketServer(threading.Thread):
 
             - 'scb' (set clock brightness) změní jas hodin
             - 'gcb' (get clock brightness) získá jas hodin
+
+            - 'gcc' (get clock colors) pošle zpět json z barev
+            - 'scc' (set clock color) nastaví barvu pixelu
             """
 
             def bye(args):
@@ -86,6 +89,19 @@ class WebSocketServer(threading.Thread):
                             self.queueWC2WS.pop(0)
                             tprint(">",data[1])
                             return data[1]
+            
+            def gcc(args):
+                self.queueWS2WC.append('gcc')
+                while True:
+                    if len(self.queueWC2WS) == 1:
+                        response = self.queueWC2WS[0]
+                        if response[0:3] == "gcc":
+                            self.queueWC2WS.pop(0)
+                            data = response[4:]
+                            return data
+
+            def scc(args):
+                pass
 
             switcher={
                     "bye":bye,
@@ -95,6 +111,8 @@ class WebSocketServer(threading.Thread):
                     "sns":sns,
                     "scb":scb,
                     "gcb":gcb,
+                    "gcc":gcc,
+                    "scc":scc,
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')

@@ -6,6 +6,7 @@ from PiAnalog import PiAnalog
 from watch_control.colors import rainbow3
 import threading
 import yaml
+import json
 
 
 
@@ -108,6 +109,10 @@ class WatchControl(threading.Thread):
                 if msg == 'gcb':
                     self.queueWS2WC.pop(0)
                     self.queueWC2WS.append(f"gcb {brightness}")
+                
+                if msg == 'gcc':
+                    self.queueWS2WC.pop(0)
+                    self.queueWC2WS.append(f"gcc {json.dumps(color)}")
             time.sleep(0.02)
         
 
