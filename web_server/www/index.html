@@ -35,7 +35,7 @@
                         for (i = 0; i < json.length; i++){
                             pixel = document.getElementById("pixel"+i)
                             if(pixel != null){
-                                pixel.style.backgroundColor = "rgb(" + pixeljson[i][0] + ", " + pixeljson[i][1] + ", " + pixeljson[i][2] + ")"
+                                pixel.style.backgroundColor = "rgb(" + json[i][0] + ", " + json[i][1] + ", " + json[i][2] + ")"
                             }
                         }
                         loaderSocket.close()
