@@ -31,6 +31,13 @@
                         msg = msg.data
                         json = JSON.parse(msg)
                         console.log(json)
+                        var i
+                        for (i = 0; i < json.length; i++){
+                            pixel = document.getElementById("pixel"+i)
+                            if(pixel != null){
+                                pixel.style.backgroundColor = "rgb(" + pixeljson[i][0] + ", " + pixeljson[i][1] + ", " + pixeljson[i][2] + ")"
+                            }
+                        }
                         loaderSocket.close()
 
                         setTimeout(()=>{
