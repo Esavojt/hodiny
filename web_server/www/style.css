@@ -243,3 +243,24 @@ input[type=range]::-webkit-slider-thumb {
   height: 200px;
   display: flex
 }
+
+.pixeldown {
+  margin-bottom: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: gray;
+  border-radius: 15px;
+}
+.pixelright {
+  margin-right: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: gray;
+  border-radius: 15px;
+}
+.pixel {
+  width: 15px;
+  height: 15px;
+  background-color: gray;
+  border-radius: 15px;
+}
