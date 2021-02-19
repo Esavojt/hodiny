@@ -21,9 +21,6 @@
                         document.getElementById("jas").value = msg
                         document.getElementById("JasValue").innerHTML = Math.round(msg/1.5) + "%"
                     }
-                    setTimeout(()=>{
-                        document.getElementById("SyncModal").style.display = 'none'
-                    },2000)
                     loaderSocket.close()
             }
 
@@ -36,6 +33,10 @@
                 json = JSON.parse(msg)
                 console.log(json)
                 loaderSocket.close()
+
+                setTimeout(()=>{
+                        document.getElementById("SyncModal").style.display = 'none'
+                    },2000)
             }
         </script>
     </head>
