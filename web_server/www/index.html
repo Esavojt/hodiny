@@ -22,21 +22,21 @@
                         document.getElementById("JasValue").innerHTML = Math.round(msg/1.5) + "%"
                     }
                     loaderSocket.close()
-            }
 
-            loaderSocket = new WebSocket("ws://" + document.location.host+":8765")
-            loaderSocket.onopen = () => {
-                loaderSocket.send("gcc");
-            }
-            loaderSocket.onmessage = (msg) => {
-                msg = msg.data
-                json = JSON.parse(msg)
-                console.log(json)
-                loaderSocket.close()
+                    loaderSocket = new WebSocket("ws://" + document.location.host+":8765")
+                    loaderSocket.onopen = () => {
+                        loaderSocket.send("gcc");
+                    }
+                    loaderSocket.onmessage = (msg) => {
+                        msg = msg.data
+                        json = JSON.parse(msg)
+                        console.log(json)
+                        loaderSocket.close()
 
-                setTimeout(()=>{
-                        document.getElementById("SyncModal").style.display = 'none'
-                    },2000)
+                        setTimeout(()=>{
+                                document.getElementById("SyncModal").style.display = 'none'
+                            },2000)
+                    }
             }
         </script>
     </head>
