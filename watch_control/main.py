@@ -1,12 +1,13 @@
 from datetime import datetime
 import time
-from rpi_ws281x import Adafruit_NeoPixel
+from rpi_ws281x import Adafruit_NeoPixel, Color
 from watch_control.segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
 from watch_control.colors import rainbow3
 import threading
 import yaml
 import json
+import os
 
 
 
@@ -113,6 +114,22 @@ class WatchControl(threading.Thread):
                 if msg == 'gcc':
                     self.queueWS2WC.pop(0)
                     self.queueWC2WS.append(f"gcc {json.dumps(color)}")
+
+                if msg == 'std':
+                    self.queueWS2WC.pop(0)
+                    for x in range(0, LED_COUNT):
+                        strip.setPixelColor(x, Color(0, 0, 0))
+                    strip.show()
+                    os.system("systemctl shutdown")
+                    break
+
+                if msg == 'rst':
+                    self.queueWS2WC.pop(0)
+                    for x in range(0, LED_COUNT):
+                        strip.setPixelColor(x, Color(0, 0, 0))
+                    strip.show()
+                    os.system("systemctl reboot")
+                    break
             time.sleep(0.02)
         
 
