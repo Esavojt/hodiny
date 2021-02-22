@@ -231,6 +231,9 @@ input[type=range]::-webkit-slider-thumb {
                     editedPixel = pixel
                     let modal = document.getElementById("ColorPickModal")
                     var rgb = pixel.style.backgroundColor.match(/\d+/g);
+                    if(rgb == null){
+                        rgb = [128,128,128]
+                    }
 
                     document.getElementById("redSlider").value = rgb[0];
                     document.getElementById("blueSlider").value = rgb[2];
@@ -284,274 +287,274 @@ input[type=range]::-webkit-slider-thumb {
 <div style="display: flex;">
     <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" onclick="openEditor(this);" id="pixel142" style="background-color:#0000ff" ></div>
-            <div class="pixelright" id="pixel143" ></div>
-            <div class="pixel" id="pixel144" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel142" style="background-color:#0000ff" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel143" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel144" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel141" ></div>
-                <div class="pixeldown" id="pixel140" ></div>
-                <div class="pixel" id="pixel139" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel141" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel140" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel139" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel145" ></div>
-                <div class="pixeldown" id="pixel146" ></div>
-                <div class="pixel" id="pixel147" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel145" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel146" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel147" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel150" ></div>
-            <div class="pixelright" id="pixel149" ></div>
-            <div class="pixel" id="pixel148" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel150" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel149" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel148" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel137" ></div>
-                <div class="pixeldown" id="pixel136" ></div>
-                <div class="pixel" id="pixel135" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel137" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel136" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel135" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel129" ></div>
-                <div class="pixeldown" id="pixel130" ></div>
-                <div class="pixel" id="pixel131" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel129" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel130" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel131" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel134" ></div>
-            <div class="pixelright" id="pixel133" ></div>
-            <div class="pixel"  id="pixel132"></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel134" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel133" ></div>
+            <div class="pixel" onclick="openEditor(this);"   id="pixel132"></div>
         </div>
     </div>
     <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel110" ></div>
-            <div class="pixelright" id="pixel111" ></div>
-            <div class="pixel" id="pixel112" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel110" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel111" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel112" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel109" ></div>
-                <div class="pixeldown" id="pixel108" ></div>
-                <div class="pixel" id="pixel107" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel109" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel108" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel107" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel113" ></div>
-                <div class="pixeldown" id="pixel114" ></div>
-                <div class="pixel" id="pixel115" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel113" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel114" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel115" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel106" ></div>
-            <div class="pixelright" id="pixel105" ></div>
-            <div class="pixel" id="pixel104" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel106" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel105" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel104" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel125" ></div>
-                <div class="pixeldown" id="pixel124" ></div>
-                <div class="pixel" id="pixel123" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel125" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel124" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel123" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel117" ></div>
-                <div class="pixeldown" id="pixel118" ></div>
-                <div class="pixel" id="pixel119" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel117" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel118" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel119" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel122" ></div>
-            <div class="pixelright" id="pixel121" ></div>
-            <div class="pixel" id="pixel120" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel122" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel121" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel120" ></div>
         </div>
     </div>
     <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px" class="separator">
-        <div class="pixeldown" id="pixel99" ></div>
-        <div class="pixel" id="pixel100" ></div>
+        <div class="pixeldown" onclick="openEditor(this);"  id="pixel99" ></div>
+        <div class="pixel" onclick="openEditor(this);"  id="pixel100" ></div>
         <div style="width: 15px; height: 15px"></div>
-        <div class="pixeldown" id="pixel102" ></div>
-        <div class="pixel" id="pixel103" ></div>
+        <div class="pixeldown" onclick="openEditor(this);"  id="pixel102" ></div>
+        <div class="pixel" onclick="openEditor(this);"  id="pixel103" ></div>
     </div>
     <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel90" ></div>
-            <div class="pixelright" id="pixel91" ></div>
-            <div class="pixel" id="pixel92" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel90" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel91" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel92" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel89" ></div>
-                <div class="pixeldown" id="pixel88" ></div>
-                <div class="pixel" id="pixel87" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel89" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel88" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel87" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel93" ></div>
-                <div class="pixeldown" id="pixel94" ></div>
-                <div class="pixel" id="pixel95" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel93" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel94" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel95" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel98" ></div>
-            <div class="pixelright" id="pixel97" ></div>
-            <div class="pixel" id="pixel96" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel98" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel97" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel96" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel85" ></div>
-                <div class="pixeldown" id="pixel84" ></div>
-                <div class="pixel" id="pixel83" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel85" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel84" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel83" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel77" ></div>
-                <div class="pixeldown" id="pixel78" ></div>
-                <div class="pixel" id="pixel79" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel77" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel78" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel79" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel82" ></div>
-            <div class="pixelright" id="pixel81" ></div>
-            <div class="pixel" id="pixel80" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel82" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel81" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel80" ></div>
         </div>
     </div>
     <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel58" ></div>
-            <div class="pixelright" id="pixel59" ></div>
-            <div class="pixel" id="pixel60" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel58" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel59" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel60" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel57" ></div>
-                <div class="pixeldown" id="pixel56" ></div>
-                <div class="pixel" id="pixel55" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel57" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel56" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel55" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel61" ></div>
-                <div class="pixeldown" id="pixel62" ></div>
-                <div class="pixel" id="pixel63" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel61" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel62" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel63" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel54" ></div>
-            <div class="pixelright" id="pixel53" ></div>
-            <div class="pixel" id="pixel52" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel54" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel53" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel52" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel73" ></div>
-                <div class="pixeldown" id="pixel72" ></div>
-                <div class="pixel" id="pixel71" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel73" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel72" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel71" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel65" ></div>
-                <div class="pixeldown" id="pixel66" ></div>
-                <div class="pixel" id="pixel67" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel65" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel66" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel67" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel70" ></div>
-            <div class="pixelright" id="pixel69" ></div>
-            <div class="pixel" id="pixel68" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel70" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel69" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel68" ></div>
         </div>
     </div>
     <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px" class="separator">
-        <div class="pixeldown" id="pixel47" ></div>
-        <div class="pixel" id="pixel48" ></div>
+        <div class="pixeldown" onclick="openEditor(this);"  id="pixel47" ></div>
+        <div class="pixel" onclick="openEditor(this);"  id="pixel48" ></div>
         <div style="width: 15px; height: 15px"></div>
-        <div class="pixeldown" id="pixel50" ></div>
-        <div class="pixel" id="pixel51" ></div>
+        <div class="pixeldown" onclick="openEditor(this);"  id="pixel50" ></div>
+        <div class="pixel" onclick="openEditor(this);"  id="pixel51" ></div>
     </div>
     <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel38" ></div>
-            <div class="pixelright" id="pixel39" ></div>
-            <div class="pixel" id="pixel40" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel38" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel39" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel40" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel37" ></div>
-                <div class="pixeldown" id="pixel36" ></div>
-                <div class="pixel" id="pixel35" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel37" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel36" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel35" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel41" ></div>
-                <div class="pixeldown" id="pixel42" ></div>
-                <div class="pixel" id="pixel43" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel41" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel42" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel43" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel46" ></div>
-            <div class="pixelright" id="pixel45" ></div>
-            <div class="pixel" id="pixel44" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel46" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel45" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel44" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel33" ></div>
-                <div class="pixeldown" id="pixel32" ></div>
-                <div class="pixel" id="pixel31" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel33" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel32" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel31" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel25" ></div>
-                <div class="pixeldown" id="pixel26" ></div>
-                <div class="pixel" id="pixel27" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel25" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel26" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel27" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel30" ></div>
-            <div class="pixelright" id="pixel29" ></div>
-            <div class="pixel" id="pixel28" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel30" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel29" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel28" ></div>
         </div>
     </div>
     <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel6" ></div>
-            <div class="pixelright" id="pixel7" ></div>
-            <div class="pixel" id="pixel8" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel6" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel7" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel8" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel5" ></div>
-                <div class="pixeldown" id="pixel4" ></div>
-                <div class="pixel" id="pixel3" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel5" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel4" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel3" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel9" ></div>
-                <div class="pixeldown" id="pixel10" ></div>
-                <div class="pixel" id="pixel11" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel9" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel10" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel11" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel2" ></div>
-            <div class="pixelright" id="pixel1" ></div>
-            <div class="pixel" id="pixel0" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel2" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel1" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel0" ></div>
         </div>
         <div style="display: flex;">
             <div>
-                <div class="pixeldown" id="pixel21" ></div>
-                <div class="pixeldown" id="pixel20" ></div>
-                <div class="pixel" id="pixel19" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel21" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel20" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel19" ></div>
             </div>
             <div style="width: 55px"></div>
             <div>
-                <div class="pixeldown" id="pixel13" ></div>
-                <div class="pixeldown" id="pixel14" ></div>
-                <div class="pixel" id="pixel15" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel13" ></div>
+                <div class="pixeldown" onclick="openEditor(this);"  id="pixel14" ></div>
+                <div class="pixel" onclick="openEditor(this);"  id="pixel15" ></div>
             </div>
         </div>
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" id="pixel18" ></div>
-            <div class="pixelright" id="pixel17" ></div>
-            <div class="pixel" id="pixel16" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel18" ></div>
+            <div class="pixelright" onclick="openEditor(this);"  id="pixel17" ></div>
+            <div class="pixel" onclick="openEditor(this);"  id="pixel16" ></div>
         </div>
     </div>
 </div>
