@@ -26,8 +26,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
     border-radius: 15px;
 }
 
-.modal {
-  display: block; /* Hidden by default */
+.editmodal {
+  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -171,70 +171,120 @@ input[type=range]::-webkit-slider-thumb {
 
 <!-- The Modal -->
 
-<div id="ColorPickModal" class="modal">
+<div id="ColorPickModal" class="editmodal">
 
     <!-- Modal content -->
     <div class="modal-content2">
-      <div style="margin-left: 10px; display: flex">
-        <div>
-            <input type="range" min="0" max="255" value="50" id="redSlider" oninput="updateColor()">
-            <input type="range" min="0" max="255" value="50" id="greenSlider" oninput="updateColor()">
-            <input type="range" min="0" max="255" value="50" id="blueSlider" oninput="updateColor()">
-            
-        </div>
-        <div>
-            <div id="resultColor"></div>
-            <input type="text" style="width: 100px; padding: 0; border: 0; text-align: center;" id="hexinput" placeholder="#FFFFFF" onchange="getFromHex()"></input>
-        </div>
-            <script>
-                let updateColor = function(){
-                    redSlider = document.getElementById("redSlider");
-                    blueSlider = document.getElementById("blueSlider");
-                    greenSlider = document.getElementById("greenSlider");
-
-                    output = document.getElementById("resultColor");
-                    input = document.getElementById("hexinput")
-
-                    input.value = rgbToHex(parseInt(redSlider.value), parseInt(greenSlider.value), parseInt(blueSlider.value))
-                    output.style.backgroundColor = "rgb("+redSlider.value+", "+greenSlider.value+", "+blueSlider.value+")"
-                    
-                }
-                const rgbToHex = (r, g, b) => '#' + [r, g, b]
-                .map(x => x.toString(16).padStart(2, '0')).join('').toString()
+        <div style="margin-left: 10px; display: flex">
+            <div>
+                <input type="range" min="0" max="255" value="50" id="redSlider" oninput="updateColor()">
+                <input type="range" min="0" max="255" value="50" id="greenSlider" oninput="updateColor()">
+                <input type="range" min="0" max="255" value="50" id="blueSlider" oninput="updateColor()">
                 
-                function getFromHex(){
-                    input = document.getElementById("hexinput")
-                    rgb = hexToRgb(input.value.slice(1))
-                    document.getElementById("redSlider").value = rgb[0]
-                    document.getElementById("blueSlider").value = rgb[2]
-                    document.getElementById("greenSlider").value = rgb[1]
+            </div>
+            <div>
+                <div id="resultColor"></div>
+                <input type="text" style="width: 100px; padding: 0; border: 0; text-align: center;" id="hexinput" placeholder="#FFFFFF" onchange="getFromHex()"></input>
+            </div>
+                <script>
+                    let updateColor = function(){
+                        redSlider = document.getElementById("redSlider");
+                        blueSlider = document.getElementById("blueSlider");
+                        greenSlider = document.getElementById("greenSlider");
+
+                        output = document.getElementById("resultColor");
+                        input = document.getElementById("hexinput")
+
+                        input.value = rgbToHex(parseInt(redSlider.value), parseInt(greenSlider.value), parseInt(blueSlider.value))
+                        output.style.backgroundColor = "rgb("+redSlider.value+", "+greenSlider.value+", "+blueSlider.value+")"
+                        
+                    }
+                    const rgbToHex = (r, g, b) => '#' + [r, g, b]
+                    .map(x => x.toString(16).padStart(2, '0')).join('').toString()
+                    
+                    function getFromHex(){
+                        input = document.getElementById("hexinput")
+                        rgb = hexToRgb(input.value.slice(1))
+                        document.getElementById("redSlider").value = rgb[0]
+                        document.getElementById("blueSlider").value = rgb[2]
+                        document.getElementById("greenSlider").value = rgb[1]
+                        updateColor()
+                    }
+                    function hexToRgb(hex) {
+                        var bigint = parseInt(hex, 16);
+                        var r = (bigint >> 16) & 255;
+                        var g = (bigint >> 8) & 255;
+                        var b = bigint & 255;
+
+                        return [r, g, b]
+                    }
+                </script>
+        </div>
+        <div style="display: flex; margin-top: auto; ">
+            <button id="saveColor" onclick="savePixel(editedPixel)">Uložit</button>
+            <button id="saveColorSegment" onclick="saveSegment(editedPixel)">Uložit na segment</button>
+            <button id="saveColorNumber">Uložit na cifru</button>
+            <script>
+                let editedPixel = null
+
+                function openEditor(pixel){
+                    editedPixel = pixel
+                    let modal = document.getElementById("ColorPickModal")
+                    var rgb = pixel.style.backgroundColor.match(/\d+/g);
+
+                    document.getElementById("redSlider").value = rgb[0];
+                    document.getElementById("blueSlider").value = rgb[2];
+                    document.getElementById("greenSlider").value = rgb[1];
+                    if(pixel.parentElement.className == "separator"){
+                        document.getElementById("saveColorNumber").disabled = true
+                    }else{
+                        document.getElementById("saveColorNumber").disabled = false
+                    }
+                    modal.style.display = "block"
                     updateColor()
                 }
-                function hexToRgb(hex) {
-                    var bigint = parseInt(hex, 16);
-                    var r = (bigint >> 16) & 255;
-                    var g = (bigint >> 8) & 255;
-                    var b = bigint & 255;
 
-                    return [r, g, b]
+                function savePixel(pixel){
+                    var r = document.getElementById("redSlider").value;
+                    var b = document.getElementById("blueSlider").value;
+                    var g = document.getElementById("greenSlider").value;
+                    pixel.style.backgroundColor = "rgb("+r+", "+g+", "+b+" )"
+                    let modal = document.getElementById("ColorPickModal")
+                    modal.style.display = "none"
+                }
+
+                function saveSegment(pixel){
+                    var children = pixel.parentElement.children
+
+                    for(var i in children){
+                        if(["pixelright", "pixeldown","pixel"].includes(children[i].className)){
+                            savePixel(children[i])
+                        }
+                    }
+                }
+                function saveNumber(pixel){
+                    var parent = pixel.parentElement
+                    while(true){
+                        if(parent.className == "number"){
+                            break;
+                        }else{
+                            parent = parent.parentElement
+                        }
+
+                    }
+                    return parent
                 }
             </script>
-    </div>
-    <div style="display: flex; margin-top: auto; ">
-        <button id="saveColor">Uložit</button>
-        <button id="copyColorSegment">Kopírovat na segment</button>
-        <button id="copyColorNumber">Kopírovat na cifru</button>
-    </div>
-
+        </div>
     </div>
   
 </div>
 
 
 <div style="display: flex;">
-    <div style="margin: 10px;">
+    <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
-            <div class="pixelright" onclick="alert(this.id);" id="pixel142" ></div>
+            <div class="pixelright" onclick="openEditor(this);" id="pixel142" style="background-color:#0000ff" ></div>
             <div class="pixelright" id="pixel143" ></div>
             <div class="pixel" id="pixel144" ></div>
         </div>
@@ -275,7 +325,7 @@ input[type=range]::-webkit-slider-thumb {
             <div class="pixel"  id="pixel132"></div>
         </div>
     </div>
-    <div style="margin: 10px;">
+    <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
             <div class="pixelright" id="pixel110" ></div>
             <div class="pixelright" id="pixel111" ></div>
@@ -318,14 +368,14 @@ input[type=range]::-webkit-slider-thumb {
             <div class="pixel" id="pixel120" ></div>
         </div>
     </div>
-    <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px">
+    <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px" class="separator">
         <div class="pixeldown" id="pixel99" ></div>
         <div class="pixel" id="pixel100" ></div>
         <div style="width: 15px; height: 15px"></div>
         <div class="pixeldown" id="pixel102" ></div>
         <div class="pixel" id="pixel103" ></div>
     </div>
-    <div style="margin: 10px;">
+    <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
             <div class="pixelright" id="pixel90" ></div>
             <div class="pixelright" id="pixel91" ></div>
@@ -368,7 +418,7 @@ input[type=range]::-webkit-slider-thumb {
             <div class="pixel" id="pixel80" ></div>
         </div>
     </div>
-    <div style="margin: 10px;">
+    <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
             <div class="pixelright" id="pixel58" ></div>
             <div class="pixelright" id="pixel59" ></div>
@@ -411,14 +461,14 @@ input[type=range]::-webkit-slider-thumb {
             <div class="pixel" id="pixel68" ></div>
         </div>
     </div>
-    <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px">
+    <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px" class="separator">
         <div class="pixeldown" id="pixel47" ></div>
         <div class="pixel" id="pixel48" ></div>
         <div style="width: 15px; height: 15px"></div>
         <div class="pixeldown" id="pixel50" ></div>
         <div class="pixel" id="pixel51" ></div>
     </div>
-    <div style="margin: 10px;">
+    <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
             <div class="pixelright" id="pixel38" ></div>
             <div class="pixelright" id="pixel39" ></div>
@@ -461,7 +511,7 @@ input[type=range]::-webkit-slider-thumb {
             <div class="pixel" id="pixel28" ></div>
         </div>
     </div>
-    <div style="margin: 10px;">
+    <div class="number" style="margin: 10px;">
         <div style="display: flex; margin-left:15px">
             <div class="pixelright" id="pixel6" ></div>
             <div class="pixelright" id="pixel7" ></div>

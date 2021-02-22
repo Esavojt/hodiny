@@ -3,7 +3,7 @@ import multiprocessing
 import os
 from http.server import HTTPServer, CGIHTTPRequestHandler
 import builtins
-
+import time
 
 def tprint(*objs, **kwargs):
     my_prefix = "[WebServer]"
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     server.start()
     try:
         while server.is_alive():
-            pass
+            time.sleep(1)
     except KeyboardInterrupt:
         print("Server shutting down")
         server.kill()
