@@ -63,9 +63,22 @@
 
         <header>
             <h1>Hodiny</h1>
-            <button id="settings" title="Settings"><img src="settings.png" alt=""></button>
-            <button id="restart" title="Restart"><img src="restart.png" alt=""></button>
-            <button id="shutdown" title="Shutdown"><img src="shutdown.png" alt=""></button>
+            <button id="restart" title="Restartovat"><img src="restart.png" alt=""></button>
+            <button id="shutdown" title="Vypnout"><img src="shutdown.png" alt=""></button>
+            <script>
+                function restart(){
+                    if(confirm("Opravdu chcete restartovat hodiny?")){
+                        webSocket = new WebSocket("ws://" + document.location.host+":8765")
+                        webSocket.onopen = () => {webSocket.send("rst")}
+                    }
+                }
+                function shutdown(){
+                    if(confirm("Opravdu chcete vypnout hodiny?")){
+                        webSocket = new WebSocket("ws://" + document.location.host+":8765")
+                        webSocket.onopen = () => {webSocket.send("std")}
+                    }
+                }
+            </script>
         </header>
         <div id="content">
             <div class="content_div">
