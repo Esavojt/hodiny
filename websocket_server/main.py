@@ -43,6 +43,9 @@ class WebSocketServer(threading.Thread):
 
             - 'gcc' (get clock colors) pošle zpět json z barev
             - 'scc' (set clock color) nastaví barvu pixelu
+
+            - 'std' (shutdown) vypne hodiny
+            - 'rst' (restart) restartuje hodiny
             """
 
             def bye(args):
@@ -103,6 +106,12 @@ class WebSocketServer(threading.Thread):
             def scc(args):
                 pass
 
+            def std(args):
+                self.queueWS2WC.append('std')
+
+            def rst(args):
+                self.queueWS2WC.append('rst')
+
             switcher={
                     "bye":bye,
                     "gtn":gtn,
@@ -113,6 +122,8 @@ class WebSocketServer(threading.Thread):
                     "gcb":gcb,
                     "gcc":gcc,
                     "scc":scc,
+                    "rst":rst,
+                    "std":std,
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')
