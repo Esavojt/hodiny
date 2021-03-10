@@ -60,6 +60,94 @@
             </div>
           
         </div>
+        <div id="ColorPickModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content2">
+              <div style="margin-left: 10px; display: flex">
+                <div>
+                    <input type="range" min="0" max="255" value="50" id="redSlider" oninput="updateColor()">
+                    <input type="range" min="0" max="255" value="50" id="greenSlider" oninput="updateColor()">
+                    <input type="range" min="0" max="255" value="50" id="blueSlider" oninput="updateColor()">
+                    
+                </div>
+                <div>
+                    <div id="resultColor"></div>
+                    <input type="text" style="width: 100px; padding: 0; border: 0; text-align: center;" id="hexinput" placeholder="#FFFFFF" onchange="getFromHex()"></input>
+                </div>
+                    <script>
+                        let editingElement = null;
+                        let editingNo = null;
+                        var colors = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]];
+
+                        let updateColor = function(){
+                            redSlider = document.getElementById("redSlider");
+                            blueSlider = document.getElementById("blueSlider");
+                            greenSlider = document.getElementById("greenSlider");
+        
+                            output = document.getElementById("resultColor");
+                            input = document.getElementById("hexinput")
+        
+                            input.value = rgbToHex(parseInt(redSlider.value), parseInt(greenSlider.value), parseInt(blueSlider.value))
+                            output.style.backgroundColor = "rgb("+redSlider.value+", "+greenSlider.value+", "+blueSlider.value+")"
+                            
+                        }
+                        const rgbToHex = (r, g, b) => '#' + [r, g, b]
+                        .map(x => x.toString(16).padStart(2, '0')).join('').toString()
+                        
+                        function getFromHex(){
+                            input = document.getElementById("hexinput")
+                            rgb = hexToRgb(input.value.slice(1))
+                            document.getElementById("redSlider").value = rgb[0]
+                            document.getElementById("blueSlider").value = rgb[2]
+                            document.getElementById("greenSlider").value = rgb[1]
+                            updateColor()
+                        }
+                        function hexToRgb(hex) {
+                            var bigint = parseInt(hex, 16);
+                            var r = (bigint >> 16) & 255;
+                            var g = (bigint >> 8) & 255;
+                            var b = bigint & 255;
+        
+                            return [r, g, b]
+                        }
+                        function openColorPicker(div, no){
+                            document.getElementById("ColorPickModal").style.display = "block"
+                            editingElement = div
+                            editingNo = no-1
+                            document.getElementById("redSlider").value = colors[editingNo][0]
+                            document.getElementById("blueSlider").value = colors[editingNo][2]
+                            document.getElementById("greenSlider").value = colors[editingNo][1]
+                            updateColor()
+                        }
+
+                        function updateChildrenColor(element, color){
+                            for (children in element.children){
+                                if(["pixel","pixeldown","pixelright"].includes(element.children[children].className)){
+                                    element.children[children].style.backgroundColor = color
+                                }
+                                else{
+                                    updateChildrenColor(element.children[children], color)
+                                }
+                            }
+                        }
+                        function saveColor(){
+                            updateChildrenColor(editingElement,document.getElementById("resultColor").style.backgroundColor)
+                            document.getElementById("ColorPickModal").style.display = "none"
+                            colors[editingNo][0] = document.getElementById("redSlider").value 
+                            colors[editingNo][1] = document.getElementById("greenSlider").value 
+                            colors[editingNo][2] = document.getElementById("blueSlider").value 
+                        }
+                    </script>
+            </div>
+            <div style="display: flex; margin-top: auto; ">
+                <button id="saveColor" onclick="saveColor()">Uložit</button>
+            </div>
+        
+            </div>
+          
+        </div>
+
 
         <header>
             <h1>Hodiny</h1>
@@ -69,25 +157,11 @@
         </header>
         <div id="content">
             <div class="content_div">
-                <a id="test">Test</a>
-                <script>
-                    myFunction = function(){
-                        webSocket = new WebSocket("ws://" + document.location.host+":8765")
-                        webSocket.onopen = () => {webSocket.send("gtn")}
-                        webSocket.onmessage = (msg) => {
-                            document.getElementById("test").innerHTML = msg.data; 
-                            console.log(msg);
-                            webSocket.close();
-                        }
-                    }
-                </script>
-                <button onclick="myFunction()">Click me</button>
-            </div>
-            <div class="content_div">
+                <h2>Zobrazení barev</h2>
                 <div style="display: flex;">
                     <div style="margin: 10px; margin-left:auto">
                         <div style="display: flex; margin-left:15px">
-                            <div class="pixelright" onclick="alert(this.id);" id="pixel142" ></div>
+                            <div class="pixelright"  id="pixel142" ></div>
                             <div class="pixelright" id="pixel143" ></div>
                             <div class="pixel" id="pixel144" ></div>
                         </div>
@@ -127,6 +201,7 @@
                             <div class="pixelright" id="pixel133" ></div>
                             <div class="pixel"  id="pixel132"></div>
                         </div>
+                        <button id="change_1" class="change_button" onclick="openColorPicker(this.parentElement,1)">Upravit</button>
                     </div>
                     <div style="margin: 10px;">
                         <div style="display: flex; margin-left:15px">
@@ -170,6 +245,7 @@
                             <div class="pixelright" id="pixel121" ></div>
                             <div class="pixel" id="pixel120" ></div>
                         </div>
+                        <button id="change_2" class="change_button" onclick="openColorPicker(this.parentElement,2)">Upravit</button>
                     </div>
                     <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px">
                         <div class="pixeldown" id="pixel99" ></div>
@@ -177,6 +253,7 @@
                         <div style="width: 15px; height: 15px"></div>
                         <div class="pixeldown" id="pixel102" ></div>
                         <div class="pixel" id="pixel103" ></div>
+                        <button id="change_3" class="change_button_small" onclick="openColorPicker(this.parentElement,3)">U</button>
                     </div>
                     <div style="margin: 10px;">
                         <div style="display: flex; margin-left:15px">
@@ -220,6 +297,7 @@
                             <div class="pixelright" id="pixel81" ></div>
                             <div class="pixel" id="pixel80" ></div>
                         </div>
+                        <button id="change_4" class="change_button" onclick="openColorPicker(this.parentElement,4)">Upravit</button>
                     </div>
                     <div style="margin: 10px;">
                         <div style="display: flex; margin-left:15px">
@@ -263,6 +341,7 @@
                             <div class="pixelright" id="pixel69" ></div>
                             <div class="pixel" id="pixel68" ></div>
                         </div>
+                        <button id="change_5" class="change_button" onclick="openColorPicker(this.parentElement,5)">Upravit</button>
                     </div>
                     <div style="margin-top: 45px; margin-left: 5px; margin-right: 5px">
                         <div class="pixeldown" id="pixel47" ></div>
@@ -270,6 +349,7 @@
                         <div style="width: 15px; height: 15px"></div>
                         <div class="pixeldown" id="pixel50" ></div>
                         <div class="pixel" id="pixel51" ></div>
+                        <button id="change_6" class="change_button_small" onclick="openColorPicker(this.parentElement,6)">U</button>
                     </div>
                     <div style="margin: 10px;">
                         <div style="display: flex; margin-left:15px">
@@ -313,6 +393,7 @@
                             <div class="pixelright" id="pixel29" ></div>
                             <div class="pixel" id="pixel28" ></div>
                         </div>
+                        <button id="change_7" class="change_button" onclick="openColorPicker(this.parentElement,7)">Upravit</button>
                     </div>
                     <div style="margin: 10px; margin-right:auto">
                         <div style="display: flex; margin-left:15px">
@@ -356,12 +437,13 @@
                             <div class="pixelright" id="pixel17" ></div>
                             <div class="pixel" id="pixel16" ></div>
                         </div>
+                        <button id="change_8" class="change_button" onclick="openColorPicker(this.parentElement,8)">Upravit</button>
                     </div>
                 </div>
-                <h2>Nastavení barev</h2>
             </div>
             <div class="separator">
                 <div class="content_div_sep">
+                    <h2>Nastavení jasu</h2>
                     <div class="content_under_header">
                         <div style="display: flex; flex-flow: row wrap; align-items: center;">
                             <p>Automatický jas:</p>
@@ -408,11 +490,10 @@
     
                         </script>
                     </div>
-                    <h2>Nastavení jasu</h2>
                 </div>
                 <div class="content_div_sep">
-                    <p>Váš čas je opožděný o 0s</p>
                     <h2>Nastavení času</h2>
+                    <p>Váš čas je opožděný o 0s</p>
                 </div>
             </div>
             <div class="content_div">

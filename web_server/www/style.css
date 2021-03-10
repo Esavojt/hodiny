@@ -18,7 +18,7 @@ h1 {
 }
 h2 {
     margin: 0px;
-    margin-top: 10px;
+    margin-bottom: 5px;
     text-align: center;
     font-size: 1.3em;
     color: rgb(109, 109, 109);
@@ -49,6 +49,7 @@ div .content_div {
     border: solid 1px #ededed;
     background: #ededed;
     margin: 3px;
+    padding-bottom: 5px;
 }
 
 /* The switch - the box around the slider */
@@ -241,7 +242,8 @@ input[type=range]::-webkit-slider-thumb {
   border: 1px solid #888;
   width: 500px; /* Full width */
   height: 200px;
-  display: flex
+  display: flex;
+  border-radius: 10px;
 }
 
 .pixeldown {
@@ -263,4 +265,67 @@ input[type=range]::-webkit-slider-thumb {
   height: 15px;
   background-color: gray;
   border-radius: 15px;
+}
+
+.change_button {
+  width: 85px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.change_button_small {
+  width: 15px;
+  height: 20px;
+  margin-top: 45px;
+  padding: 1px;
+}
+
+#redSlider::-moz-range-track{
+  background: #ff0000;
+}
+#redSlider::-webkit-slider-runnable-track{
+  background:#FF0000
+}
+#redSlider{
+  width: 70%;
+}
+#greenSlider::-moz-range-track{
+  background: #00ff00;
+}
+#greenSlider::-webkit-slider-runnable-track{
+  background: #00ff00;
+}
+#greenSlider{
+  width: 70%;
+}
+#blueSlider::-moz-range-track{
+  background: #0000ff;
+}
+#blueSlider::-webkit-slider-runnable-track{
+  background: #0000ff;
+}
+#blueSlider{
+  width: 70%;
+}
+
+#resultColor{
+  width: 100px;
+  height: 100px;
+  border: 1px solid;
+}
+
+.modal-content2 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px; /* Full width */
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+#ColorPickModal {
+  display: none;
 }
