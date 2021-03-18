@@ -3,7 +3,7 @@ import time
 from rpi_ws281x import Adafruit_NeoPixel, Color
 from watch_control.segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
-from watch_control.colors import rainbow3
+from watch_control.colors import rainbow3, rainbow
 import threading
 import yaml
 import json
@@ -41,6 +41,13 @@ f = open("config.yml")
 file = f.read()
 config = yaml.safe_load(file)
 brightness = config['brightness']
+
+if config['theme'] == "rainbow_snake":
+    color = rainbow
+elif config['theme'] == "rainbow":
+    color = rainbow3
+elif config['theme'] == "custom":
+    color = config["colors"]
 
 class WatchControl(threading.Thread):
     def __init__(self, queueWC2WS, queueWS2WC):
@@ -130,6 +137,14 @@ class WatchControl(threading.Thread):
                     strip.show()
                     os.system("systemctl reboot")
                     break
+
+                if msg == "sct":
+                    if data == "rainbow":
+                        pass
+                    if data == "rainbow_snake":
+                        pass
+                    if data == "custom":
+                        pass
             time.sleep(0.02)
         
 

@@ -329,3 +329,9 @@ input[type=range]::-webkit-slider-thumb {
 #ColorPickModal {
   display: none;
 }
+
+.themebutton {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: large;
+}

@@ -170,8 +170,40 @@
         </header>
         <div id="content">
             <div class="content_div">
-                <h2>Zobrazení barev</h2>
+                <h2>Nastavení barev</h2>
                 <div style="display: flex;">
+                    <div>
+                        <div class="themebutton"><input type="radio" id="rainbow" onclick="setRainbow();"><a>Duha</a></div>
+                        <div class="themebutton"><input type="radio" id="rainbow_snake" onclick="setRainbowSnake();"><a>Duhový had</a></div>
+                        <div class="themebutton"><input type="radio" id="custom" onclick="setCustom();"><a>Vlastní</a></div>
+                        <script>
+                            function setRainbow(){
+                                document.getElementById("rainbow_snake").checked = false
+                                document.getElementById("custom").checked = false
+                                sendMessage("sct rainbow")
+                            }
+                            function setRainbowSnake(){
+                                document.getElementById("rainbow").checked = false
+                                document.getElementById("custom").checked = false
+                                sendMessage("sct rainbow_snake")
+                            }
+                            function setCustom(){
+                                document.getElementById("rainbow_snake").checked = false
+                                document.getElementById("rainbow").checked = false
+                                sendMessage("sct custom")
+                            }
+
+                            function sendMessage(msg){
+                                themeWS = new WebSocket("ws://" + document.location.host+":8765")
+                                themeWS.onopen = () => {themeWS.send(msg)}
+                                themeWS.onmessage = (msg) => {
+                                    console.log(msg);
+                                    themeWS.close();
+                                }
+                            }
+                        </script>
+                    </div>
+
                     <div style="margin: 10px; margin-left:auto">
                         <div style="display: flex; margin-left:15px">
                             <div class="pixelright"  id="pixel142" ></div>
