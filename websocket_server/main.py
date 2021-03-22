@@ -129,7 +129,7 @@ class WebSocketServer(threading.Thread):
                             return data
 
             def gtc(args):
-                self.queueWS2WC.append('gct')
+                self.queueWS2WC.append('gtc')
                 while True:
                     if len(self.queueWC2WS) == 1:
                         response = self.queueWC2WS[0]
@@ -152,7 +152,7 @@ class WebSocketServer(threading.Thread):
                     "std":std,
                     "sct":sct,
                     "gct":gct,
-                    "gtc":gtc
+                    "gtc":gtc,
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')
