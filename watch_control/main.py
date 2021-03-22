@@ -69,6 +69,7 @@ class WatchControl(threading.Thread):
 
     def run(self):
         print("[WatchControl] Starting!")
+
         self.main()
 
     def main(self):
@@ -208,7 +209,7 @@ class WatchControl(threading.Thread):
                     jas = 1
                 if jas > 255:
                     jas = 255
-                jas = (jas + lastjas)/2
+                #jas = (jas + lastjas)/2
                 strip.setBrightness(int(jas))
                 strip.show()
                 lastjas = jas
