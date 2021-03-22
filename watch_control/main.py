@@ -180,7 +180,7 @@ class WatchControl(threading.Thread):
                 if msg == "gct":
                     self.queueWS2WC.pop(0)
                     tprint(f"Returning current theme {config['theme']}")
-                    self.queueWC2WS.append(config['theme'])
+                    self.queueWC2WS.append(f"gct {config['theme']}")
             time.sleep(0.02)
         
 
