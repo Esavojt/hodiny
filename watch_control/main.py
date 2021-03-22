@@ -174,11 +174,12 @@ class WatchControl(threading.Thread):
                     self.queueWS2WC.pop(0)
                     with open("./config.yml", 'w') as f:
                         config['colors'] = json.loads(data)
-                        tprint(config)
+                        tprint("Setting colors")
                         f.write(yaml.safe_dump(config))
                 
                 if msg == "gct":
                     self.queueWS2WC.pop(0)
+                    tprint(f"Returning current theme {config['theme']}")
                     self.queueWC2WS.append(config['theme'])
             time.sleep(0.02)
         
