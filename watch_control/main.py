@@ -30,7 +30,7 @@ sensor.R1 = 330
 sensor.a_pin = 24
 # for x in range(0, LED_COUNT):
 #    strip.setPixelColor(x, Color(255, 0, 0))
-color = rainbow3
+color = None
 
 strip.setBrightness(100)
 strip.show()
