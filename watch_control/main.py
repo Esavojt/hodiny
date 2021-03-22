@@ -8,7 +8,7 @@ import threading
 import yaml
 import json
 import os
-
+import builtins
 
 
 # LED strip configuration:
@@ -48,6 +48,11 @@ elif config['theme'] == "rainbow":
     color = rainbow3
 elif config['theme'] == "custom":
     color = config["colors"]
+
+
+def tprint(*objs, **kwargs):
+    my_prefix = "[WatchControl]"
+    builtins.print(my_prefix, *objs, **kwargs)
 
 class WatchControl(threading.Thread):
     def __init__(self, queueWC2WS, queueWS2WC):
@@ -125,6 +130,7 @@ class WatchControl(threading.Thread):
 
                 if msg == 'std':
                     self.queueWS2WC.pop(0)
+                    tprint(f"Shutting down")
                     for x in range(0, LED_COUNT):
                         strip.setPixelColor(x, Color(0, 0, 0))
                     strip.show()
@@ -133,6 +139,7 @@ class WatchControl(threading.Thread):
 
                 if msg == 'rst':
                     self.queueWS2WC.pop(0)
+                    tprint(f"Rebooting")
                     for x in range(0, LED_COUNT):
                         strip.setPixelColor(x, Color(0, 0, 0))
                     strip.show()
@@ -140,6 +147,7 @@ class WatchControl(threading.Thread):
                     break
 
                 if msg == "sct":
+                    tprint(f"Setting color mode to {data}")
                     self.queueWS2WC.pop(0)
                     if data == "rainbow":
                         color = rainbow3
