@@ -172,7 +172,7 @@ class WatchControl(threading.Thread):
                         for index in range(8):
                             for led in range(leds[index][0], leds[index][1]):
                                 color[led] = [int(colors[index][0]), int(colors[index][1]), int(colors[index][2])]
-                                
+
                         with open("./config.yml", 'w') as f:
                             config['theme'] = "custom"
                             f.write(yaml.safe_dump(config))
@@ -183,7 +183,13 @@ class WatchControl(threading.Thread):
                         config['colors'] = json.loads(data)
                         tprint("Setting colors")
                         f.write(yaml.safe_dump(config))
-                
+                        
+                        colors = config["colors"]
+                        leds = [[126,151],[104,126],[99,104],[77,99],[52,74],[47,52],[25,47],[0,22]]
+                        for index in range(8):
+                            for led in range(leds[index][0], leds[index][1]):
+                                color[led] = [int(colors[index][0]), int(colors[index][1]), int(colors[index][2])]
+                                    
                 if msg == "gct":
                     self.queueWS2WC.pop(0)
                     tprint(f"Returning current theme {config['theme']}")
