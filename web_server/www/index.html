@@ -41,9 +41,9 @@
                         loaderSocket.close()
 
                         createSocket("gct", function(msg){
-                            if(mgs.data == "rainbow"){
+                            if(msg.data == "rainbow"){
                                 document.getElementById("rainbow").checked = true
-                            }else if(mgs.data == "rainbow_snake"){
+                            }else if(msg.data == "rainbow_snake"){
                                 document.getElementById("rainbow_snake").checked = true
                             }else{
                                 document.getElementById("custom").checked = true
