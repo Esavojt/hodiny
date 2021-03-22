@@ -164,6 +164,11 @@ class WatchControl(threading.Thread):
                         with open("./config.yml", 'w') as f:
                             config['theme'] = "custom"
                             f.write(yaml.safe_dump(config))
+                
+                if msg == "scc":
+                    with open("./config.yml", 'w') as f:
+                        config['color'] = json.loads(data)
+                        f.write(yaml.safe_dump(config))
             time.sleep(0.02)
         
 
