@@ -166,6 +166,7 @@ class WatchControl(threading.Thread):
                             f.write(yaml.safe_dump(config))
                 
                 if msg == "scc":
+                    self.queueWS2WC.pop(0)
                     with open("./config.yml", 'w') as f:
                         config['colors'] = json.loads(data)
                         tprint(config)
