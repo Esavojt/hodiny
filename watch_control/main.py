@@ -139,12 +139,13 @@ class WatchControl(threading.Thread):
                     break
 
                 if msg == "sct":
+                    self.queueWS2WC.pop(0)
                     if data == "rainbow":
-                        pass
+                        color = rainbow3
                     if data == "rainbow_snake":
-                        pass
+                        color = rainbow
                     if data == "custom":
-                        pass
+                        color = config["colors"]
             time.sleep(0.02)
         
 
