@@ -40,11 +40,19 @@
                         }
                         loaderSocket.close()
 
-                        createSocket("gtc", function(msg){
-                           colors = JSON.parse(msg.data)
-                           setTimeout(()=>{
-                                document.getElementById("SyncModal").style.display = 'none'
-                            },2000)
+                        createSocket("gct", function(msg){
+                            if(mgs.data == "rainbow"){
+                                document.getElementById("rainbow").checked = true
+                            }else if(mgs.data == "rainbow_snake"){
+                                document.getElementById("rainbow_snake").checked = true
+                            }else{
+                                createSocket("gtc", function(msg){
+                                    colors = JSON.parse(msg.data);
+                                    setTimeout(()=>{
+                                        document.getElementById("SyncModal").style.display = 'none'
+                                    },2000);
+                                })
+                            }
                         })
 
                         setTimeout(()=>{
