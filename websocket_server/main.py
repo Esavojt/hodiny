@@ -105,8 +105,7 @@ class WebSocketServer(threading.Thread):
                             return data
 
             def scc(args):
-                """REE"""
-                pass
+                print(args)
 
             def sct(args):
                 self.queueWS2WC.append(args)
