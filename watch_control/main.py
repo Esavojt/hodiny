@@ -47,7 +47,12 @@ if config['theme'] == "rainbow_snake":
 elif config['theme'] == "rainbow":
     color = rainbow3
 elif config['theme'] == "custom":
-    color = config["colors"]
+    colors = config["colors"]
+    leds = [[126,151],[104,126],[99,104],[77,99],[52,74],[47,52],[25,47],[0,22]]
+    for index in range(8):
+        for led in range(leds[index][0], leds[index][1]):
+            color[led] = colors[index]
+
 
 
 def tprint(*objs, **kwargs):
