@@ -43,16 +43,22 @@
                         createSocket("gct", function(msg){
                             if(msg.data == "rainbow"){
                                 document.getElementById("rainbow").checked = true
+                                document.getElementById("rainbow_snake").checked = false
+                                document.getElementById("custom").checked = false
                                 setTimeout(()=>{
                                     document.getElementById("SyncModal").style.display = 'none'
                                 },2000);
                             }else if(msg.data == "rainbow_snake"){
                                 document.getElementById("rainbow_snake").checked = true
+                                document.getElementById("rainbow").checked = false
+                                document.getElementById("custom").checked = false
                                 setTimeout(()=>{
                                     document.getElementById("SyncModal").style.display = 'none'
                                 },2000);
                             }else{
                                 document.getElementById("custom").checked = true
+                                document.getElementById("rainbow").checked = false
+                                document.getElementById("rainbow_snake").checked = false
                                 createSocket("gtc", function(msg){
                                     colors = JSON.parse(msg.data);
                                     setTimeout(()=>{
