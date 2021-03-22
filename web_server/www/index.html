@@ -46,6 +46,7 @@
                             }else if(mgs.data == "rainbow_snake"){
                                 document.getElementById("rainbow_snake").checked = true
                             }else{
+                                document.getElementById("custom").checked = true
                                 createSocket("gtc", function(msg){
                                     colors = JSON.parse(msg.data);
                                     setTimeout(()=>{
