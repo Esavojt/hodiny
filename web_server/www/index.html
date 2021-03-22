@@ -51,7 +51,7 @@
                     customSocket.onopen = () => {
                         customSocket.send(send);
                     }
-                    loaderSocket.onmessage = (msg) => {
+                    customSocket.onmessage = (msg) => {
                         receiveFunction(msg);
                     }
             }
