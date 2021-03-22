@@ -109,7 +109,7 @@ class WebSocketServer(threading.Thread):
                 pass
 
             def sct(args):
-                self.queueWS2WC.append(f'sct {args[1]}')
+                self.queueWS2WC.append(args)
 
             def std(args):
                 self.queueWS2WC.append('std')
