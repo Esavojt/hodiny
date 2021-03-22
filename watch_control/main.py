@@ -176,6 +176,10 @@ class WatchControl(threading.Thread):
                         config['colors'] = json.loads(data)
                         tprint(config)
                         f.write(yaml.safe_dump(config))
+                
+                if msg == "gct":
+                    self.queueWS2WC.pop(0)
+                    self.queueWC2WS.append(config['theme'])
             time.sleep(0.02)
         
 

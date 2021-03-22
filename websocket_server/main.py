@@ -44,6 +44,8 @@ class WebSocketServer(threading.Thread):
             - 'gcc' (get clock colors) pošle zpět json z barev
             - 'scc' (set clock color) nastaví barvu pixelu
             - 'sct' (set clock theme) nastaví téma hodin
+            - 'gct' (get clock theme) získá téma hodin
+            - "gtc' (get theme colors) získá barvy, pokud jsou hodiny nastavené na custom
 
             - 'std' (shutdown) vypne hodiny
             - 'rst' (restart) restartuje hodiny
@@ -115,6 +117,18 @@ class WebSocketServer(threading.Thread):
 
             def rst(args):
                 self.queueWS2WC.append('rst')
+
+            def gct(args):
+                self.queueWS2WC.append('gct')
+                while True:
+                    if len(self.queueWC2WS) == 1:
+                        response = self.queueWC2WS[0]
+                        if response[0:3] == "gct":
+                            self.queueWC2WS.pop(0)
+                            data = response[4:]
+                            return data
+
+            def gtc(args):
 
             switcher={
                     "bye":bye,
