@@ -151,10 +151,19 @@ class WatchControl(threading.Thread):
                     self.queueWS2WC.pop(0)
                     if data == "rainbow":
                         color = rainbow3
+                        with open("./config.yml", 'w') as f:
+                            config['theme'] = "rainbow"
+                            f.write(yaml.safe_dump(config))
                     if data == "rainbow_snake":
                         color = rainbow
+                        with open("./config.yml", 'w') as f:
+                            config['theme'] = "rainbow"
+                            f.write(yaml.safe_dump(config))
                     if data == "custom":
                         color = config["colors"]
+                        with open("./config.yml", 'w') as f:
+                            config['theme'] = "rainbow"
+                            f.write(yaml.safe_dump(config))
             time.sleep(0.02)
         
 
