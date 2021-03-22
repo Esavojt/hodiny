@@ -3,7 +3,7 @@ import time
 from rpi_ws281x import Adafruit_NeoPixel, Color
 from watch_control.segments import num_to_segments, light_seconds_indicator
 from PiAnalog import PiAnalog
-from watch_control.colors import rainbow3, rainbow
+from watch_control.colors import rainbow3, rainbow, red
 import threading
 import yaml
 import json
@@ -47,7 +47,7 @@ if config['theme'] == "rainbow_snake":
 elif config['theme'] == "rainbow":
     color = rainbow3
 elif config['theme'] == "custom":
-    color = rainbow
+    color = red
     colors = config["colors"]
     leds = [[126,151],[104,126],[99,104],[77,99],[52,74],[47,52],[25,47],[0,22]]
     for index in range(8):
