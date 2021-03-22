@@ -51,7 +51,7 @@ elif config['theme'] == "custom":
     leds = [[126,151],[104,126],[99,104],[77,99],[52,74],[47,52],[25,47],[0,22]]
     for index in range(8):
         for led in range(leds[index][0], leds[index][1]):
-            color[led] = colors[index]
+            color[led] = [int(colors[index][0]), int(colors[index][1]), int(colors[index][2])]
 
 
 
