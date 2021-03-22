@@ -157,12 +157,12 @@ class WatchControl(threading.Thread):
                     if data == "rainbow_snake":
                         color = rainbow
                         with open("./config.yml", 'w') as f:
-                            config['theme'] = "rainbow"
+                            config['theme'] = "rainbow_snake"
                             f.write(yaml.safe_dump(config))
                     if data == "custom":
                         color = config["colors"]
                         with open("./config.yml", 'w') as f:
-                            config['theme'] = "rainbow"
+                            config['theme'] = "custom"
                             f.write(yaml.safe_dump(config))
             time.sleep(0.02)
         
