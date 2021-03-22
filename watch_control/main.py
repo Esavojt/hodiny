@@ -62,6 +62,7 @@ class WatchControl(threading.Thread):
         self.main()
 
     def main(self):
+        global color
         light_seconds_indicator(True, color, strip)
         num_to_segments(8, 1, color, strip)
         num_to_segments(8, 2, color, strip)

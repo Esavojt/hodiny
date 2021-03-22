@@ -2,3 +2,4 @@
 *.save
 **/.vscode
 **/.idea
+config.yml
