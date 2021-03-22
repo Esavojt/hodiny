@@ -45,6 +45,16 @@
                             },2000)
                     }
             }
+
+            function createSocket(send, receiveFunction){
+                customSocket = new WebSocket("ws://" + document.location.host+":8765")
+                    customSocket.onopen = () => {
+                        customSocket.send(send);
+                    }
+                    loaderSocket.onmessage = (msg) => {
+                        receiveFunction(msg);
+                    }
+            }
         </script>
     </head>
     <body>
@@ -181,16 +191,59 @@
                                 document.getElementById("rainbow_snake").checked = false
                                 document.getElementById("custom").checked = false
                                 sendMessage("sct rainbow")
+                                setTimeout(() => {
+                                    createSocket("gcc", function(msg){
+                                        msg = msg.data
+                                        json = JSON.parse(msg)
+                                        console.log(json)
+                                        var i
+                                        for (i = 0; i < json.length; i++){
+                                            pixel = document.getElementById("pixel"+i)
+                                            if(pixel != null){
+                                                pixel.style.backgroundColor = "rgb(" + json[i][0] + ", " + json[i][1] + ", " + json[i][2] + ")"
+                                            }
+                                        }
+                                    })
+                                }, 2000);
+                                
                             }
                             function setRainbowSnake(){
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("custom").checked = false
                                 sendMessage("sct rainbow_snake")
+                                setTimeout(() => {
+                                    createSocket("gcc", function(msg){
+                                        msg = msg.data
+                                        json = JSON.parse(msg)
+                                        console.log(json)
+                                        var i
+                                        for (i = 0; i < json.length; i++){
+                                            pixel = document.getElementById("pixel"+i)
+                                            if(pixel != null){
+                                                pixel.style.backgroundColor = "rgb(" + json[i][0] + ", " + json[i][1] + ", " + json[i][2] + ")"
+                                            }
+                                        }
+                                    })
+                                }, 2000);
                             }
                             function setCustom(){
                                 document.getElementById("rainbow_snake").checked = false
                                 document.getElementById("rainbow").checked = false
                                 sendMessage("sct custom")
+                                setTimeout(() => {
+                                    createSocket("gcc", function(msg){
+                                        msg = msg.data
+                                        json = JSON.parse(msg)
+                                        console.log(json)
+                                        var i
+                                        for (i = 0; i < json.length; i++){
+                                            pixel = document.getElementById("pixel"+i)
+                                            if(pixel != null){
+                                                pixel.style.backgroundColor = "rgb(" + json[i][0] + ", " + json[i][1] + ", " + json[i][2] + ")"
+                                            }
+                                        }
+                                    })
+                                }, 2000);
                             }
 
                             function sendMessage(msg){
