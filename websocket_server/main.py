@@ -129,7 +129,14 @@ class WebSocketServer(threading.Thread):
                             return data
 
             def gtc(args):
-                pass
+                self.queueWS2WC.append('gct')
+                while True:
+                    if len(self.queueWC2WS) == 1:
+                        response = self.queueWC2WS[0]
+                        if response[0:3] == "gtc":
+                            self.queueWC2WS.pop(0)
+                            data = response[4:]
+                            return data
 
             switcher={
                     "bye":bye,
