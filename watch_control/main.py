@@ -86,6 +86,7 @@ class WatchControl(threading.Thread):
 
         lastnow = None
         sekundovnik = False
+        lastjas = 0
         while True:
             now = datetime.now()
             if (now.microsecond / 1000) > 500:
@@ -183,7 +184,7 @@ class WatchControl(threading.Thread):
                         config['colors'] = json.loads(data)
                         tprint("Setting colors")
                         f.write(yaml.safe_dump(config))
-                        
+
                         colors = config["colors"]
                         leds = [[126,151],[104,126],[99,104],[77,99],[52,74],[47,52],[25,47],[0,22]]
                         for index in range(8):
@@ -200,27 +201,23 @@ class WatchControl(threading.Thread):
                     tprint(f"Returning current theme colors {config['colors']}")
                     self.queueWC2WS.append(f"gtc {json.dumps(config['colors'])}")
             time.sleep(0.02)
+
+            if brightness == "auto":
+                jas = 20000 - sensor.read_resistance()
+                jas = jas / 200
+                if jas < 1:
+                    jas = 1
+                if jas > 255:
+                    jas = 255
+                jas = (jas + lastjas)/2
+                strip.setBrightness(int(jas))
+                strip.show()
+                lastjas = jas
+            else:
+                strip.setBrightness(int(brightness))
+                strip.show()
         
 
-def backlight_update():
-    lastjas = 0
-    while True:
-        if brightness == "auto":
-            jas = 20000 - sensor.read_resistance()
-            jas = jas / 200
-            if jas < 1:
-                jas = 1
-            if jas > 255:
-                jas = 255
-            jas = (jas + lastjas)/2
-            strip.setBrightness(int(jas))
-            strip.show()
-            lastjas = jas
-            time.sleep(0.05)
-        else:
-            strip.setBrightness(int(brightness))
-            strip.show()
-            time.sleep(0.1)
 
 def int_to_str(i):
     if i < 10:
