@@ -129,6 +129,7 @@ class WebSocketServer(threading.Thread):
                             return data
 
             def gtc(args):
+                pass
 
             switcher={
                     "bye":bye,
@@ -143,6 +144,8 @@ class WebSocketServer(threading.Thread):
                     "rst":rst,
                     "std":std,
                     "sct":sct,
+                    "gct":gct,
+                    "gtc":gtc
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')
