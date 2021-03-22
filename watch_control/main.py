@@ -185,7 +185,7 @@ class WatchControl(threading.Thread):
                 if msg == "gtc":
                     self.queueWS2WC.pop(0)
                     tprint(f"Returning current theme colors {config['colors']}")
-                    self.queueWC2WS.append(f"gtc {config['colors']}")
+                    self.queueWC2WS.append(f"gtc {json.dumps(config['colors'])}")
             time.sleep(0.02)
         
 
