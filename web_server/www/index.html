@@ -45,6 +45,7 @@
                                 document.getElementById("rainbow").checked = true
                                 document.getElementById("rainbow_snake").checked = false
                                 document.getElementById("custom").checked = false
+                                disableEditButtons(false)
                                 setTimeout(()=>{
                                     document.getElementById("SyncModal").style.display = 'none'
                                 },2000);
@@ -52,6 +53,7 @@
                                 document.getElementById("rainbow_snake").checked = true
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("custom").checked = false
+                                disableEditButtons(false)
                                 setTimeout(()=>{
                                     document.getElementById("SyncModal").style.display = 'none'
                                 },2000);
@@ -59,6 +61,7 @@
                                 document.getElementById("custom").checked = true
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("rainbow_snake").checked = false
+                                disableEditButtons(true)
                                 createSocket("gtc", function(msg){
                                     colors = JSON.parse(msg.data);
                                     setTimeout(()=>{
@@ -69,6 +72,12 @@
                         })
 
                     }
+            }
+
+            function disableEditButtons(state){
+                for(var i = 1; i <= 8; i++){
+                    document.getElementById("change_"+i).disabled = state
+                }
             }
 
             function createSocket(send, receiveFunction){
@@ -216,6 +225,7 @@
                             function setRainbow(){
                                 document.getElementById("rainbow_snake").checked = false
                                 document.getElementById("custom").checked = false
+                                disableEditButtons(false)
                                 sendMessage("sct rainbow")
                                 setTimeout(() => {
                                     createSocket("gcc", function(msg){
@@ -237,6 +247,7 @@
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("custom").checked = false
                                 sendMessage("sct rainbow_snake")
+                                disableEditButtons(false)
                                 setTimeout(() => {
                                     createSocket("gcc", function(msg){
                                         msg = msg.data
@@ -256,6 +267,7 @@
                                 document.getElementById("rainbow_snake").checked = false
                                 document.getElementById("rainbow").checked = false
                                 sendMessage("sct custom")
+                                disableEditButtons(true)
                                 setTimeout(() => {
                                     createSocket("gcc", function(msg){
                                         msg = msg.data
