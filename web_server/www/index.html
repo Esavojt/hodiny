@@ -62,6 +62,9 @@
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("rainbow_snake").checked = false
                                 disableEditButtons(true)
+                                setTimeout(()=>{
+                                    document.getElementById("SyncModal").style.display = 'none'
+                                },2000);
                             }
                             createSocket("gtc", function(msg){
                                     colors = JSON.parse(msg.data);
