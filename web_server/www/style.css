@@ -45,6 +45,7 @@ header button {
 div .content_div {
     padding-top: 5px;
     padding-left: 10px;
+    padding-bottom: 5px;
     border-radius: 5px;
     border: solid 1px #ededed;
     background: #ededed;
@@ -214,6 +215,7 @@ input[type=range]::-webkit-slider-thumb {
   width:50%;
   padding-top: 5px;
   padding-left: 10px;
+  padding-bottom: 5px;
   border-radius: 5px;
   border: solid 1px #ededed;
   background: #ededed;
