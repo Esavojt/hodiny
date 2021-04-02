@@ -146,7 +146,7 @@ class WebSocketServer(threading.Thread):
                 cmd = "cat /etc/wpa_supplicant/wpa_supplicant.conf"
                 process = subprocess.run(cmd, shell=True, capture_output=True)
                 wifis = process.stdout.decode("utf-8")
-                print(re.findall('ssid=".*"', wifis)[0][6:-1])
+                return re.findall('ssid=".*"', wifis)[0][6:-1]
                 
             switcher={
                     "bye":bye,
