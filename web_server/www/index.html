@@ -46,25 +46,16 @@
                                 document.getElementById("rainbow_snake").checked = false
                                 document.getElementById("custom").checked = false
                                 disableEditButtons(false)
-                                setTimeout(()=>{
-                                    document.getElementById("SyncModal").style.display = 'none'
-                                },2000);
                             }else if(msg.data == "rainbow_snake"){
                                 document.getElementById("rainbow_snake").checked = true
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("custom").checked = false
                                 disableEditButtons(false)
-                                setTimeout(()=>{
-                                    document.getElementById("SyncModal").style.display = 'none'
-                                },2000);
                             }else{
                                 document.getElementById("custom").checked = true
                                 document.getElementById("rainbow").checked = false
                                 document.getElementById("rainbow_snake").checked = false
                                 disableEditButtons(true)
-                                setTimeout(()=>{
-                                    document.getElementById("SyncModal").style.display = 'none'
-                                },2000);
                             }
                             createSocket("gtc", function(msg){
                                     colors = JSON.parse(msg.data);
@@ -78,6 +69,9 @@
                                             }else{
                                                 document.getElementById("updateTime").checked = false;
                                             }
+                                            setTimeout(()=>{
+                                                document.getElementById("SyncModal").style.display = 'none'
+                                            },2000);
                                         })
                                     })
                             })
@@ -650,13 +644,13 @@
                     </div>
                     <br>
                     <div style="text-align: center">
-                        <p id="time">Váš čas je opožděný o 0 sekund</p>
+                        <p id="time">Váš čas je opožděný o 0s</p>
                         <button style="margin-top: 10px" onclick="updateTime()">Aktualizovat</button>
                         <script>
                             function updateTime(){
                                 createSocket("gtn", function(msg){
                                     var offset = Math.abs(msg.data - Math.floor(Date.now() / 1000))
-                                    document.getElementById("time").innerHTML = "Váš čas je opožděný o "+offset+" sekund"
+                                    document.getElementById("time").innerHTML = "Váš čas je opožděný o "+offset+"s"
                                 })
                             }
                             function updateAutoTime(){
