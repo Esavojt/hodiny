@@ -636,7 +636,7 @@
                     <div style="display: flex; flex-flow: row wrap; align-items: center;">
                         <p>Automatická synchronizace:</p>
                         <label class="switch">
-                            <input type="checkbox" id="" onclick="">
+                            <input type="checkbox" id="updateTime" onclick="updateAutoTime()">
                             <span class="slider round"></span>
                         </label>    
                     </div>
@@ -650,6 +650,13 @@
                                     var offset = Math.abs(msg.data - Math.floor(Date.now() / 1000))
                                     document.getElementById("time").innerHTML = "Váš čas je opožděný o "+offset+" sekund"
                                 })
+                            }
+                            function updateAutoTime(){
+                                if(document.getElementById("updateTime").checked){
+                                    createSocket("sns true", function(msg){})
+                                }else{
+                                    createSocket("sns false", function(msg){})
+                                }
                             }
                         </script>
                     </div>
