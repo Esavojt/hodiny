@@ -661,6 +661,10 @@
                     <button id="setwifi" onclick="setWifi()">Nastavit WiFi</button>
                     <script>
                         function setWifi(){
+                            if(document.getElementById("wifipwd").value.length < 8){
+                                alert("Heslo na wifi nemůže být kratší jak 8 charakterů!")
+                                return;
+                            }
                             if(confirm("Opravdu chcete změnit WiFi na '"+document.getElementById("wifissid").value+"'?")){
                                 var json = JSON.stringify({"ssid": document.getElementById("wifissid").value, "pass": document.getElementById("wifipwd").value})
                                 createSocket("swc "+json, function(msg){
