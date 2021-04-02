@@ -152,7 +152,7 @@ class WebSocketServer(threading.Thread):
             def swc(args):
                 combo = json.loads(args[3:])
                 wconfigfile = open("wpa_supplicant_template.conf")
-                wconfig = wconfigfile.readlines() 
+                wconfig = wconfigfile.read() 
                 print(wconfig)
                 return "ok"
                 
