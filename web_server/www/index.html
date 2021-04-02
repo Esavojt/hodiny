@@ -633,13 +633,25 @@
                 </div>
                 <div class="content_div_sep">
                     <h2>Nastavení času</h2>
-                    <p>Váš čas je opožděný o 0s</p>
                     <div style="display: flex; flex-flow: row wrap; align-items: center;">
                         <p>Automatická synchronizace:</p>
                         <label class="switch">
                             <input type="checkbox" id="" onclick="">
                             <span class="slider round"></span>
                         </label>    
+                    </div>
+                    <br>
+                    <div style="text-align: center">
+                        <p id="time">Váš čas je opožděný o 0 sekund</p>
+                        <button style="margin-top: 10px" onclick="updateTime()">Aktualizovat</button>
+                        <script>
+                            function updateTime(){
+                                createSocket("gtn", function(msg){
+                                    var offset = Math.abs(msg.data - Math.floor(Date.now() / 1000))
+                                    document.getElementById("time").value = "Váš čas je opožděný o "+offset+" sekund"
+                                })
+                            }
+                        </script>
                     </div>
                 </div>
                 <div class="content_div_sep">
