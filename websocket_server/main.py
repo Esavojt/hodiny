@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 import os
 import json
+import subprocess
 
 def tprint(*objs, **kwargs):
     my_prefix = "[WebSocketServer]"
@@ -49,6 +50,8 @@ class WebSocketServer(threading.Thread):
 
             - 'std' (shutdown) vypne hodiny
             - 'rst' (restart) restartuje hodiny
+
+            - 'gws' (get wifi ssid) získá ssid wifi sítě
             """
 
             def bye(args):
@@ -138,6 +141,11 @@ class WebSocketServer(threading.Thread):
                             data = response[4:]
                             return data
 
+            def gws(args):
+                cmd = "cat /etc/wpa_supplicant/wpa_supplicant.conf"
+                process = subprocess.run(cmd, shell=True, capture_output=True)
+                print(process.stdout)
+                
             switcher={
                     "bye":bye,
                     "gtn":gtn,

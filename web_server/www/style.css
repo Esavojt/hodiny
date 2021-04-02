@@ -127,7 +127,7 @@ div .content_div {
 p {
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 20px
+    font-size: 18px
 }
 
 
@@ -212,12 +212,9 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .content_div_sep{
-  display:inline-block;
-  width:50%;
-  padding-top: 5px;
-  padding-left: 10px;
-  padding-bottom: 5px;
-  padding-right: 5px;
+  display: inline-block;
+  width: 50%;
+  padding: 10px;
   border-radius: 5px;
   border: solid 1px #ededed;
   background: #ededed;
