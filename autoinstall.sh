@@ -17,6 +17,7 @@ apt install git -y
 echo "---------- Installing GPIO related libraries ----------"
 pip3 install rpi_ws281x
 pip3 install RPi.GPIO
+pip3 install websockets
 
 git clone https://github.com/simonmonk/pi_analog.git
 cd pi_analog
