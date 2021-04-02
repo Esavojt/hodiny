@@ -161,6 +161,7 @@ class WebSocketServer(threading.Thread):
                     "sct":sct,
                     "gct":gct,
                     "gtc":gtc,
+                    "gws":gws,
                     }
             tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')
