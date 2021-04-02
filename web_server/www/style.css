@@ -284,7 +284,6 @@ input[type=range]::-webkit-slider-thumb {
   height: 22px;
   margin-top: 45px;
   padding: 0;
-  border: 0px;
   border-width: 2px;
 }
 
