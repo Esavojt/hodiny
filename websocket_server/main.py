@@ -7,6 +7,7 @@ import time
 import os
 import json
 import subprocess
+import re
 
 def tprint(*objs, **kwargs):
     my_prefix = "[WebSocketServer]"
@@ -144,7 +145,8 @@ class WebSocketServer(threading.Thread):
             def gws(args):
                 cmd = "cat /etc/wpa_supplicant/wpa_supplicant.conf"
                 process = subprocess.run(cmd, shell=True, capture_output=True)
-                print(process.stdout.decode("utf-8"))
+                wifis = process.stdout.decode("utf-8")
+                print(re.findall('ssid=".*"', wifis))
                 
             switcher={
                     "bye":bye,
