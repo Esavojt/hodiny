@@ -153,6 +153,8 @@ class WebSocketServer(threading.Thread):
                 combo = json.loads(args[3:])
                 wconfigfile = open("wpa_supplicant_template.conf")
                 wconfig = wconfigfile.read() 
+                wconfig = wconfig.replace("%ssid%",combo["ssid"])
+                wconfig = wconfig.replace("%psk%",combo["pass"])
                 print(wconfig)
                 return "ok"
                 
