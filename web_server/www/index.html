@@ -661,11 +661,11 @@
                     <button id="setwifi">Nastavit WiFi</button>
                     <script>
                         function setWifi(){
-                            if(confirm("Opravdu chcete změnit WiFi?")){
+                            if(confirm("Opravdu chcete změnit WiFi na '"+document.getElementById("wifissid").value+"'?")){
                                 var json = JSON.stringify({"ssid": document.getElementById("wifissid").value, "pass": document.getElementById("wifipwd").value})
                                 createSocket("swc "+json, function(msg){
                                     if(msg.data == "ok"){
-                                        alert("WiFi byla změněna na "+document.getElementById("wifissid").value)
+                                        alert("WiFi byla změněna na '"+document.getElementById("wifissid").value+"'")
                                     }
                                 })
                             }
