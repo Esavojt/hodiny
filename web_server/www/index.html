@@ -660,7 +660,16 @@
                     <br>
                     <button id="setwifi">Nastavit WiFi</button>
                     <script>
-                        
+                        function setWifi(){
+                            if(confirm("Opravdu chcete změnit WiFi?")){
+                                var json = JSON.stringify({"ssid": document.getElementById("wifissid").value, "pass": document.getElementById("wifipwd").value})
+                                createSocket("swc "+json, function(msg){
+                                    if(msg.data == "ok"){
+                                        alert("WiFi byla změněna na "+document.getElementById("wifissid").value)
+                                    }
+                                })
+                            }
+                        }
                     </script>
                 </div>
             </div>

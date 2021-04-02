@@ -153,6 +153,7 @@ class WebSocketServer(threading.Thread):
                 combo = json.loads(args[3:])
                 print(combo["ssid"])
                 print(combo["pass"])
+                return "ok"
                 
             switcher={
                     "bye":bye,
