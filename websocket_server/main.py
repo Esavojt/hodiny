@@ -144,7 +144,7 @@ class WebSocketServer(threading.Thread):
             def gws(args):
                 cmd = "cat /etc/wpa_supplicant/wpa_supplicant.conf"
                 process = subprocess.run(cmd, shell=True, capture_output=True)
-                print(process.stdout)
+                print(process.stdout.decode("utf-8"))
                 
             switcher={
                     "bye":bye,
