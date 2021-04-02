@@ -665,7 +665,8 @@
                                 var json = JSON.stringify({"ssid": document.getElementById("wifissid").value, "pass": document.getElementById("wifipwd").value})
                                 createSocket("swc "+json, function(msg){
                                     if(msg.data == "ok"){
-                                        alert("WiFi byla změněna na '"+document.getElementById("wifissid").value+"'")
+                                        alert("WiFi byla změněna na '"+document.getElementById("wifissid").value+"', hodiny se teď restartují")
+                                        createSocket("rst", function(msg){})
                                     }
                                 })
                             }
