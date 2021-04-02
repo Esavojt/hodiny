@@ -151,8 +151,9 @@ class WebSocketServer(threading.Thread):
 
             def swc(args):
                 combo = json.loads(args[3:])
-                print(combo["ssid"])
-                print(combo["pass"])
+                wconfigfile = open("wpa_supplicant_template.conf")
+                wconfig = wconfigfile.readlines() 
+                print(wconfig)
                 return "ok"
                 
             switcher={
