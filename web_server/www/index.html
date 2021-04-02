@@ -648,7 +648,7 @@
                             function updateTime(){
                                 createSocket("gtn", function(msg){
                                     var offset = Math.abs(msg.data - Math.floor(Date.now() / 1000))
-                                    document.getElementById("time").value = "Váš čas je opožděný o "+offset+" sekund"
+                                    document.getElementById("time").innerHTML = "Váš čas je opožděný o "+offset+" sekund"
                                 })
                             }
                         </script>
