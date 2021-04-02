@@ -68,6 +68,10 @@
                             }
                             createSocket("gtc", function(msg){
                                     colors = JSON.parse(msg.data);
+
+                                    createSocket("gws", function(msg){
+                                        document.getElementById("wifissid").value = msg.data
+                                    })
                             })
                         })
 
