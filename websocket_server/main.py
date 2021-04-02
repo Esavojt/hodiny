@@ -150,8 +150,7 @@ class WebSocketServer(threading.Thread):
                 return re.findall('ssid=".*"', wifis)[0][6:-1]
 
             def swc(args):
-                print(args)
-                combo = json.loads(args)
+                combo = json.loads(args[3:])
                 print(combo["ssid"])
                 print(combo["pass"])
                 
