@@ -29,3 +29,7 @@ echo "---------- Cloning repository ----------"
 git clone https://github.com/Esavojt/hodiny.git
 
 cd hodiny
+
+cp hodiny.service /etc/systemd/system/hodiny.service
+systemctl enable hodiny
+systemctl start hodiny

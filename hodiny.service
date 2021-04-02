@@ -1,0 +1,9 @@
+[Unit]
+Description=Hodiny
+
+[Service]
+WorkingDirectory=/home/pi/hodiny
+ExecStart=python3 -u /home/pi/hodiny/main.py
+
+[Install]
+WantedBy=multi-user.target
