@@ -53,6 +53,7 @@ class WebSocketServer(threading.Thread):
             - 'rst' (restart) restartuje hodiny
 
             - 'gws' (get wifi ssid) získá ssid wifi sítě
+            - 'swc' (set wifi credentials) nastaví wifi credentials
             """
 
             def bye(args):
@@ -147,6 +148,11 @@ class WebSocketServer(threading.Thread):
                 process = subprocess.run(cmd, shell=True, capture_output=True)
                 wifis = process.stdout.decode("utf-8")
                 return re.findall('ssid=".*"', wifis)[0][6:-1]
+
+            def swc(args):
+                combo = json.loads(args)
+                print(combo["ssid"])
+                print(combo["pass"])
                 
             switcher={
                     "bye":bye,
