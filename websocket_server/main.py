@@ -39,6 +39,7 @@ class WebSocketServer(threading.Thread):
             - 'stn' (set time now) nastaví čas z UNIX času
             - 'sta' (set time automatically) nastaví čas hodin z NTP
             - 'sns' (switch ntp state) změní zda čas je sync z NTP nebo ne
+            - 'gns' (get ntp state) získá stav ntp
 
             - 'scb' (set clock brightness) změní jas hodin
             - 'gcb' (get clock brightness) získá jas hodin
@@ -84,6 +85,11 @@ class WebSocketServer(threading.Thread):
                 os.system(f"timedatectl set-ntp {args[1]}")
                 tprint(">",'ok')
                 return 'ok'
+
+            def gns(args):
+                process = subprocess.run("timedatectl", shell=True, capture_output=True)
+                x = re.findall("active|inactive", process.stdout.decode("utf-8"))[0]
+                return x
 
             def scb(args):
                 self.queueWS2WC.append(args)
@@ -167,6 +173,7 @@ class WebSocketServer(threading.Thread):
                     "stn":stn,
                     "sta":sta,
                     "sns":sns,
+                    "gns":gns,
                     "scb":scb,
                     "gcb":gcb,
                     "gcc":gcc,
