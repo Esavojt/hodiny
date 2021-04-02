@@ -154,7 +154,7 @@ class WebSocketServer(threading.Thread):
                 wconfigfile = open("wpa_supplicant_template.conf")
                 wconfig = wconfigfile.read() 
                 wconfig = wconfig.replace("%ssid%",combo["ssid"])
-                wconfig = wconfig.replace("%psk%",combo["pass"])
+                wconfig = wconfig.replace("%pass%",combo["pass"])
                 print(wconfig)
                 return "ok"
                 
