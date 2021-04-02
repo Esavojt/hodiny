@@ -71,6 +71,14 @@
 
                                     createSocket("gws", function(msg){
                                         document.getElementById("wifissid").value = msg.data
+
+                                        createSocket("gns", function(msg){
+                                            if(msg.data == "active"){
+                                                document.getElementById("updateTime").checked = true;
+                                            }else{
+                                                document.getElementById("updateTime").checked = false;
+                                            }
+                                        })
                                     })
                             })
                         })
