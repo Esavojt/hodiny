@@ -662,7 +662,11 @@
                     <script>
                         function setWifi(){
                             if(document.getElementById("wifipwd").value.length < 8){
-                                alert("Heslo na wifi nemůže být kratší jak 8 charakterů!")
+                                alert("Heslo na WiFi nemůže být kratší jak 8 charakterů!")
+                                return;
+                            }
+                            if(document.getElementById("wifipwd").value.length == 0){
+                                alert("SSID nemůže být prázdné!")
                                 return;
                             }
                             if(confirm("Opravdu chcete změnit WiFi na '"+document.getElementById("wifissid").value+"'?")){
