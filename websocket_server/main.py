@@ -156,6 +156,9 @@ class WebSocketServer(threading.Thread):
                 wconfig = wconfig.replace("%ssid%",combo["ssid"])
                 wconfig = wconfig.replace("%pass%",combo["pass"])
                 print(wconfig)
+                wpa_supplicant = open("/etc/wpa_supplicant/wpa_supplicant.conf","w")
+                wpa_supplicant.write(wconfig)
+                wpa_supplicant.close()
                 return "ok"
                 
             switcher={
