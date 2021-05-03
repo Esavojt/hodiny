@@ -26,3 +26,6 @@ colors:
   - '0'
   - '255'
 theme: custom
+analog:
+  - condensator: 0.047
+  - resistor: 5000
