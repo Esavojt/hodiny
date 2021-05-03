@@ -15,7 +15,6 @@ websocket_server = WebSocketServer(queueWC2WS, queueWS2WC, asyncio.get_event_loo
 
 if __name__ == '__main__':
     """Get update"""
-    os.system("git checkout -- .")
     os.system("git pull origin main")
     
     web_server.start()
