@@ -36,8 +36,8 @@ config = yaml.safe_load(file)
 brightness = config['brightness']
 
 sensor = PiAnalog()
-sensor.C = config['analog']['condensator']
-sensor.R1 = config['analog']['resistor']
+sensor.C = config['analog'][0]
+sensor.R1 = config['analog'][1]
 sensor.a_pin = 24
 # for x in range(0, LED_COUNT):
 #    strip.setPixelColor(x, Color(255, 0, 0))
