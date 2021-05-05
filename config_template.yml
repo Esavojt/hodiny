@@ -29,3 +29,4 @@ theme: custom
 analog:
   - 0.047
   - 5000
+  - 1

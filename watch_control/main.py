@@ -207,7 +207,7 @@ def backlight_update():
     lastjas = 0
     while True:
         if brightness == "auto":
-            jas = 20000 - sensor.read_resistance()
+            jas = 20000 - (sensor.read_resistance()*config['analog'][2])
             jas = jas / 200
             if jas < 1:
                 jas = 1

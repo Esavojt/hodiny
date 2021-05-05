@@ -1,6 +1,8 @@
 import os
 os.system("cp -n config_template.yml config.yml")
+os.system("git checkout -- .")
 os.system("git pull origin main")
+
 import threading
 import multiprocessing
 import asyncio
