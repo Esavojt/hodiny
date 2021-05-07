@@ -10,6 +10,7 @@ import json
 import os
 import builtins
 
+debug = False
 
 # LED strip configuration:
 LED_COUNT = 300  # Number of LED pixels.
@@ -62,9 +63,11 @@ def tprint(*objs, **kwargs):
     builtins.print(my_prefix, *objs, **kwargs)
 
 class WatchControl(threading.Thread):
-    def __init__(self, queueWC2WS, queueWS2WC):
+    def __init__(self, queueWC2WS, queueWS2WC, debugLocal):
         self.queueWS2WC = queueWS2WC
         self.queueWC2WS = queueWC2WS
+        global debug
+        debug = debugLocal
         super().__init__()
         self.daemon = True
 
@@ -207,6 +210,9 @@ def backlight_update():
     lastjas = 0
     while True:
         if brightness == "auto":
+            if debug:
+                print(f"Sensor: {sensor.read_resistance()*config['analog'][2]}")
+
             jas = 20000 - (sensor.read_resistance()*config['analog'][2])
             jas = jas / 200
             if jas < 1:
@@ -214,6 +220,9 @@ def backlight_update():
             if jas > 255:
                 jas = 255
             #jas = (jas + lastjas)/2
+            if debug:
+                print(f"Jas: {jas}")
+
             strip.setBrightness(int(jas))
             strip.show()
             lastjas = jas

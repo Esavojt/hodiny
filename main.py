@@ -1,4 +1,5 @@
 import os
+import sys
 os.system("cp -n config_template.yml config.yml")
 os.system("git checkout -- .")
 os.system("git pull origin main")
@@ -14,8 +15,11 @@ web_server = WebServer()
 queueWC2WS = []
 queueWS2WC = []
 
-watch_control = WatchControl(queueWC2WS, queueWS2WC)
-websocket_server = WebSocketServer(queueWC2WS, queueWS2WC, asyncio.get_event_loop())
+debug = sys.argv[1] == "debug"
+
+watch_control = WatchControl(queueWC2WS, queueWS2WC, debug)
+websocket_server = WebSocketServer(queueWC2WS, queueWS2WC, asyncio.get_event_loop(), debug)
+
 
 if __name__ == '__main__':
     """Get update"""

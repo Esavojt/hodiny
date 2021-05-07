@@ -16,12 +16,13 @@ def tprint(*objs, **kwargs):
 
 class WebSocketServer(threading.Thread):
 
-    def __init__(self, queueWC2WS, queueWS2WC, eventLoop):
+    def __init__(self, queueWC2WS, queueWS2WC, eventLoop, debug):
         self.queueWC2WS = queueWC2WS
         self.queueWS2WC = queueWS2WC
         self.eventLoop = eventLoop
         super().__init__()
         self.daemon = True
+        self.debug = debug
 
     def run(self):
         tprint("Starting!")
@@ -186,7 +187,9 @@ class WebSocketServer(threading.Thread):
                     "gws":gws,
                     "swc":swc,
                     }
-            tprint("<",args)
+
+            if self.debug:
+                tprint("<",args)
             func = switcher.get(args[0:3], lambda args:'Invalid')
             await websocket.send(str(func(args)))
             
