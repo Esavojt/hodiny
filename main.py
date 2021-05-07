@@ -15,7 +15,10 @@ web_server = WebServer()
 queueWC2WS = []
 queueWS2WC = []
 
-debug = sys.argv[1] == "debug"
+if len(sys.argv) == 2:
+    debug = sys.argv[1] == "debug"
+else:
+    debug = False
 
 watch_control = WatchControl(queueWC2WS, queueWS2WC, debug)
 websocket_server = WebSocketServer(queueWC2WS, queueWS2WC, asyncio.get_event_loop(), debug)
