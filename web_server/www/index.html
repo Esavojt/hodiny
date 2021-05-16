@@ -659,6 +659,7 @@
                                 if(document.getElementById("updateTime").checked){
                                     createSocket("sns true", function(msg){})
                                     document.getElementById("syncTime").disabled = true
+                                    setTimeout(function(){createSocket("sta", function(){})}, 3000)
                                 }else{
                                     createSocket("sns false", function(msg){})
                                     document.getElementById("syncTime").disabled = false

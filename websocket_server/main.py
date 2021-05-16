@@ -77,7 +77,7 @@ class WebSocketServer(threading.Thread):
                 return output
 
             def sta(args):
-                os.system(f"timedatectl set-ntp true")
+                os.system("hwclock --systohc")
                 output = "ok"
                 tprint(">",output)
                 return output
