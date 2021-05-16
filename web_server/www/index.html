@@ -66,8 +66,10 @@
                                         createSocket("gns", function(msg){
                                             if(msg.data == "active"){
                                                 document.getElementById("updateTime").checked = true;
+                                                document.getElementById("syncTime").disabled = true
                                             }else{
                                                 document.getElementById("updateTime").checked = false;
+                                                document.getElementById("syncTime").disabled = false
                                             }
                                             setTimeout(()=>{
                                                 document.getElementById("SyncModal").style.display = 'none'
@@ -643,7 +645,7 @@
                         </label>    
                     </div>
                     <div style="text-align: center">
-                        <button style="margin-top: 5px; margin-bottom: 20px;" onclick="syncTime()">Synchronizovat čas se zařízením</button>
+                        <button style="margin-top: 5px; margin-bottom: 20px;" id="syncTime" onclick="syncTime()">Synchronizovat čas se zařízením</button>
                         <p id="time">Váš čas je opožděný o 0s</p>
                         <button style="margin-top: 5px" onclick="updateTime()">Aktualizovat</button>
                         <script>
@@ -656,13 +658,15 @@
                             function updateAutoTime(){
                                 if(document.getElementById("updateTime").checked){
                                     createSocket("sns true", function(msg){})
+                                    document.getElementById("syncTime").disabled = true
                                 }else{
                                     createSocket("sns false", function(msg){})
+                                    document.getElementById("syncTime").disabled = false
                                 }
                             }
 
                             function syncTime(){
-                                createSocket("stn "+ Math.floor(Date.now() / 1000).toString(), function(msg){})
+                                createSocket("stn "+ Math.floor(Date.now() / 1000).toString() , function(msg){})
                             }
                         </script>
                     </div>
