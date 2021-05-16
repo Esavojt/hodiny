@@ -5,6 +5,7 @@
         <title>Hodiny</title>
         <link rel="stylesheet" href="style.css">
         <script async>
+            isDeveloper(false)
             loaderSocket = new WebSocket("ws://" + document.location.host+":8765")
             loaderSocket.onopen = () => {
                 loaderSocket.send("gcb");
@@ -718,7 +719,7 @@
                     </script>
                 </div>
             </div>
-            <div class="content_div">
+            <div class="content_div" id="dev">
                 <h2>Developer console</h2>
                 <p id="output">Output</p>
                 <button id="submit_button" onclick="onSubmit()">Odeslat</button>
@@ -734,6 +735,14 @@
                             console.log(msg);
                             webSocket.close();
                         }
+                    }
+
+                    function isDeveloper(val){
+                        var display = "none"
+                        if(val){
+                            display = "block"
+                        }
+                        document.getElementById("dev").style.display = display
                     }
                 </script>
             </div>
