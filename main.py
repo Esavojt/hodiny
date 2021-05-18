@@ -3,7 +3,7 @@ import sys
 os.system("cp -n config_template.yml config.yml")
 os.system("git checkout -- .")
 os.system("git pull origin main")
-os.system("sh sync.sh")
+#os.system("sh sync.sh")
 
 import threading
 import multiprocessing
