@@ -144,7 +144,7 @@ class WatchControl(threading.Thread):
                     for x in range(0, LED_COUNT):
                         strip.setPixelColor(x, Color(0, 0, 0))
                     strip.show()
-                    os.system("systemctl shutdown")
+                    os.system("systemctl poweroff")
                     break
 
                 if msg == 'rst':
